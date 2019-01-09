@@ -12,24 +12,56 @@ const AuthForm = props => {
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+        <div className="col-sm-6 offset-sm-3">
+          <input
+            type="email"
+            className="form-control"
+            id="inputEmail"
+            placeholder="Email"
+          />
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+
+        <div className="col-sm-6 offset-sm-3">
+          <input
+            type="password"
+            className="form-control"
+            id="inputPassword"
+            placeholder="Password"
+          />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
+
+        <div className="col-sm-6 offset-sm-3">
+          <button type="submit" className="btn btn-primary btn-block">
+            {displayName}
+          </button>
         </div>
+
+        <div className="col-sm-6 offset-sm-3">
+          <p className="text-center">or</p>
+        </div>
+
+        <div className="col-sm-6 offset-sm-3">
+          <button
+            onClick="location.href = '/auth/google';"
+            type="button"
+            className="btn btn-secondary btn-block"
+          >
+            {displayName} with Google
+          </button>
+        </div>
+
+        <div className="col-sm-6 offset-sm-3">
+          <button
+            onClick="location.href = '/auth/facebook';"
+            type="button"
+            className="btn btn-secondary btn-block"
+          >
+            {displayName} with Facebook
+          </button>
+        </div>
+
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
     </div>
   )
 }
