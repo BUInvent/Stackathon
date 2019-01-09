@@ -17,12 +17,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import axios from 'axios'
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props)
 
     this.toggle = this.toggle.bind(this)
+    this.handleClick = this.handleClick.bind(this)
     this.state = {
       isOpen: false
     }
@@ -31,6 +33,12 @@ class NavBar extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     })
+  }
+
+  handleClick() {
+    if (this.props.isLoggedIn) {
+      axios.post('/auth/logout')
+    }
   }
   render() {
     return (
@@ -52,8 +60,11 @@ class NavBar extends React.Component {
                 <NavLink href="/otherworldly/">Otherworldly</NavLink>
               </NavItem>
               <NavItem>
-                <Button href="/auth/">
-                  {this.props.auth ? 'Logout' : 'SignIn/Up'}
+                <Button
+                  href={this.props.isLoggedIn ? '/' : '/login'}
+                  onClick={this.handleClick}
+                >
+                  {this.props.isLoggedIn ? 'Logout' : 'SignIn/Up'}
                 </Button>
               </NavItem>
               {!this.props.admin ? (
