@@ -67,6 +67,11 @@ class NavBar extends React.Component {
                   {this.props.isLoggedIn ? 'Logout' : 'SignIn/Up'}
                 </Button>
               </NavItem>
+              {this.props.isLoggedIn && (
+                <NavItem>
+                  <Button href="/account/">Account</Button>
+                </NavItem>
+              )}
               {!this.props.admin ? (
                 <NavItem>
                   <Button href="/cart/">Cart</Button>
