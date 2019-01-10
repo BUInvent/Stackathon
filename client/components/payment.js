@@ -28,14 +28,38 @@ class Payment extends Component {
                 <Label for="address1">Address Line 1</Label>
                 <Input type="text" name="address2" id="address2" />
                 <Label for="address2">Address Line 2</Label>
-
-                <Input type="text" name="city" id="city" />
-                <Label for="city">City</Label>
-
-                <Input type="text" name="state" id="state" />
-                <Label for="state">State</Label>
-                <Input type="number" name="zip" id="zip" />
-                <Label for="zip">ZIP</Label>
+                <Row form>
+                  <Col md={4}>
+                    <Input type="text" name="city" id="city" />
+                    <Label for="city">City</Label>
+                  </Col>
+                  <Col md={4}>
+                    <Input type="text" name="state" id="state" />
+                    <Label for="state">State</Label>
+                  </Col>
+                  <Col md={2}>
+                    <Input type="number" name="zip" id="zip" />
+                    <Label for="zip">ZIP</Label>
+                  </Col>
+                </Row>
+              </FormGroup>
+            </Form>
+            <h3>Payment Info</h3>
+            <Form>
+              <FormGroup>
+                <Input type="select" name="select" id="cardprov">
+                  <option>Visa</option>
+                  <option>MasterCard</option>
+                </Input>
+                <Label for="cardprov">Card Provider</Label>
+                <Input type="text" name="cardname" id="cardname" />
+                <Label for="cardname">Cardholder Name</Label>
+                <Input type="text" name="cardnum" id="cardnum" />
+                <Label for="cardnum">Card Number</Label>
+                <Input type="text" name="cardsec" id="cardsec" />
+                <Label for="cardsec">Security Number</Label>
+                <Input type="date" name="date" id="expdate" />
+                <Label for="expdate">Card Expiration Date</Label>
               </FormGroup>
             </Form>
           </Col>
