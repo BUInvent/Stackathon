@@ -8,7 +8,7 @@ export const Home = props => {
   const {email} = props
 
   return (
-    <Container className="mt-5">
+    <Container>
       <Row>
         <Col>
           <img
