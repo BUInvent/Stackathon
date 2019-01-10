@@ -6,4 +6,5 @@
 export {default as Navbar} from './Nav'
 export {default as UserHome} from './user-home'
 export {default as Cart} from './cart'
+export {default as PaymentPage} from './payment'
 export {Login, Signup} from './auth-form'
