@@ -24,7 +24,7 @@ class NavBar extends React.Component {
     super(props)
 
     this.toggle = this.toggle.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
     this.state = {
       isOpen: false
     }
@@ -35,11 +35,11 @@ class NavBar extends React.Component {
     })
   }
 
-  handleClick() {
-    if (this.props.isLoggedIn) {
-      axios.post('/auth/logout')
-    }
-  }
+  // handleClick() {
+  //   if (this.props.isLoggedIn) {
+  //     axios.post('/auth/logout')
+  //   }
+  // }
   render() {
     return (
       <div className="sticky-top">
@@ -83,7 +83,7 @@ class NavBar extends React.Component {
                 <Link
                   className="btn btn-dark"
                   to={this.props.isLoggedIn ? '/' : '/login'}
-                  onClick={this.handleClick}
+                  onClick={this.props.handleClick}
                 >
                   {this.props.isLoggedIn ? 'Logout' : 'SignIn/Up'}
                 </Link>
@@ -95,7 +95,7 @@ class NavBar extends React.Component {
                   </Link>
                 </NavItem>
               )}
-              {this.props.admin ? (
+              {!this.props.admin ? (
                 <NavItem>
                   <Link className="btn btn-dark" to="/cart/">
                     Cart
