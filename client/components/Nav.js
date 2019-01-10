@@ -24,7 +24,7 @@ class NavBar extends React.Component {
     super(props)
 
     this.toggle = this.toggle.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
     this.state = {
       isOpen: false
     }
@@ -35,56 +35,95 @@ class NavBar extends React.Component {
     })
   }
 
-  handleClick() {
-    if (this.props.isLoggedIn) {
-      axios.post('/auth/logout')
-    }
-  }
+  // handleClick() {
+  //   if (this.props.isLoggedIn) {
+  //     axios.post('/auth/logout')
+  //   }
+  // }
   render() {
     return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/" className="font-weight-bolder">
-            Supernaturals
-          </NavbarBrand>
+      <div className="sticky-top">
+        <Navbar color="danger" light expand="md">
+          <Link
+            className="font-weight-bolder navbar-brand"
+            style={{fontFamily: 'Permanent Marker'}}
+            to="/"
+          >
+            Supernatural Store
+          </Link>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/magic/">Magic</NavLink>
+                <Link
+                  className="nav-link text-dark font-weight-bold"
+                  to="/magic/"
+                >
+                  Magic
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/monsters/">Monsters</NavLink>
+                <Link
+                  className="nav-link text-dark font-weight-bold"
+                  to="/monsters/"
+                >
+                  Monsters
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/otherworldly/">Otherworldly</NavLink>
+                <Link
+                  className="nav-link text-dark font-weight-bold"
+                  to="/unearthly/"
+                >
+                  Unearthly
+                </Link>
               </NavItem>
               <NavItem>
-                <Button
-                  href={this.props.isLoggedIn ? '/' : '/login'}
-                  onClick={this.handleClick}
+                <Link
+                  className="btn btn-dark"
+                  to={this.props.isLoggedIn ? '/' : '/login'}
+                  onClick={this.props.handleClick}
                 >
                   {this.props.isLoggedIn ? 'Logout' : 'SignIn/Up'}
-                </Button>
+                </Link>
               </NavItem>
               {this.props.isLoggedIn && (
                 <NavItem>
-                  <Button href="/account/">Account</Button>
+                  <Link className="btn btn-dark" to="/account/">
+                    Account
+                  </Link>
                 </NavItem>
               )}
               {!this.props.admin ? (
                 <NavItem>
-                  <Button href="/cart/">Cart</Button>
+                  <Link className="btn btn-dark" to="/cart/">
+                    Cart
+                  </Link>
                 </NavItem>
               ) : (
                 <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    Options
+                  <DropdownToggle
+                    className="text-dark font-weight-bold"
+                    nav
+                    caret
+                  >
+                    Panels
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem>Option 1</DropdownItem>
+                    <Link
+                      className="dropdown-item nav-link text-dark font-weight-bold"
+                      to="/admin/users"
+                    >
+                      Users
+                    </Link>
                     <DropdownItem divider />
-                    <DropdownItem>Option 2</DropdownItem>
+                    <Link
+                      className="dropdown-item nav-link text-dark font-weight-bold"
+                      to="/admin/orders"
+                    >
+                      Orders
+                    </Link>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
