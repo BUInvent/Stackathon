@@ -13,6 +13,9 @@ const Order = db.define('order', {
       isIn: ['Created', 'Processing', 'Completed', 'Cancelled']
     }
   },
+  contents: {
+    type: Sequelize.ARRAY(Sequelize.JSON)
+  },
   price: {
     type: Sequelize.FLOAT
   }
