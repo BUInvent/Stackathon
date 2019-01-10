@@ -13,7 +13,7 @@ class Cart extends Component {
           </Col>
         </Row>
         <Row>
-          <Col sm="12" md={{size: 6}}>
+          <Col sm="12" md={{size: 9}}>
             <ul>
               {this.props.cartItems.map(item => {
                 //debugger
@@ -21,7 +21,7 @@ class Cart extends Component {
               })}
             </ul>
           </Col>
-          <Col sm="12" md={{size: 6}}>
+          <Col sm="12" md={{size: 1, offset: 1}}>
             <p>${this.props.cartSum}</p>
             <p>$5.00</p>
             <p>$20.00</p>

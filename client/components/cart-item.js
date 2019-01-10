@@ -1,5 +1,14 @@
 import React from 'react'
-import {Container, Media, Row, Col, Button} from 'reactstrap'
+import {
+  Container,
+  Media,
+  Row,
+  Col,
+  Button,
+  Form,
+  Label,
+  Input
+} from 'reactstrap'
 
 const CartItem = props => {
   return (
@@ -16,7 +25,15 @@ const CartItem = props => {
               <p>${props.price}</p>
             </Col>
             <Col sm="2">
-              <Button size="sm">x</Button>
+              <Button close />
+              <Form>
+                <Label for="quantity">Quantity</Label>
+                <Input type="select" name="select" id="quantity">
+                  <option>1</option>
+                  <option>2</option>
+                </Input>
+                <Button>Submit</Button>
+              </Form>
             </Col>
           </Row>
         </Container>

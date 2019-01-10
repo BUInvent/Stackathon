@@ -6,7 +6,8 @@ const defaultProduct = {
   title: 'title',
   price: 5.0,
   description: 'Placeholder Product',
-  imgURL: '/default-image.jpg'
+  imgURL: '/default-image.jpg',
+  quantity: 5
 }
 const defaultCart = []
 for (let i = 0; i < 5; i++) {
