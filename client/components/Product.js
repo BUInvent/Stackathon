@@ -1,57 +1,64 @@
 import React from 'react'
 import {Container, Row, Col, Button} from 'reactstrap'
 
-const Product = ({
-  id,
-  imageURL,
-  name,
-  longDescription,
-  quantity,
-  user,
-  session,
-  price
-}) => {
+const Product = ({isAdmin, product, session}) => {
+  const {imageURL, name, longDescription, quantity, price} = product
   return (
     <Container>
-      <Row>
+      <Row className="mt-2">
         <Col>
           <h1 className="text-center" style={{fontFamily: 'Permanent Marker'}}>
             {name}
           </h1>
         </Col>
-        {user.isAdmin && (
+        {isAdmin && (
           <Col>
-            <Button /* onClick=THUNK: 'put products${id} */>Edit Item</Button>
+            <Button /* HUNK: 'put products${id} */>Edit Item</Button>
           </Col>
         )}
       </Row>
-      <Row>
+      <Row className="mt-2">
         <Col>
-          <img
-            width="100%"
-            className="img-fluid"
-            src={imageURL}
-            alt={`picture-of-${name}`}
-          />
+          <div className="mt-2 justify-content-center">
+            <img
+              width="100%"
+              className="img-fluid"
+              src={imageURL}
+              alt={`picture-of-${name}`}
+            />
+          </div>
         </Col>
       </Row>
-      <Row>
+      <Row className="mt-2">
         <Col>
           <p>{longDescription}</p>
         </Col>
+      </Row>
+
+      <Row className="mt-2">
         <Col>
-          <h2>There are {quantity} available</h2>
-          <h3>Price: ${price}</h3>
-          <Button onClick="THUNK: Post request to session.cart">
-            Add to Cart
-          </Button>
-          {session.cart.id && (
-            <h3>{`There is ${
-              session.cart.id
-            } ${name}(s) added to your cart`}</h3>
-          )}
+          <h6>There are {quantity} available</h6>
         </Col>
       </Row>
+      <Row className="mt-2">
+        <Col>
+          <h5>Price: ${price}</h5>
+        </Col>
+      </Row>
+      <Row className="mt-2">
+        <Col>
+          <Button /* onClick="THUNK: Post request to session.cart" */>
+            Add to Cart
+          </Button>
+        </Col>
+      </Row>
+      {session.cart.name && (
+        <Row className="mt-4">
+          <Col>
+            <h6>This item has been added to your cart</h6>
+          </Col>
+        </Row>
+      )}
     </Container>
   )
 }
