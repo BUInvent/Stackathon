@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Media, Row, Col, Button} from 'reactstrap'
+import {Container, Media, Row, Col} from 'reactstrap'
 
 const Order = props => {
   return (
@@ -10,7 +10,7 @@ const Order = props => {
       <Media body>
         <Container>
           <Row>
-            <Col sm="10">
+            <Col sm="12">
               <Media heading>{props.title}</Media>
               <p>{props.description}</p>
               <p>${props.price}</p>
@@ -28,9 +28,6 @@ const Order = props => {
                   {props.dateDelivered.toLocaleDateString('en-US')}
                 </p>
               )}
-            </Col>
-            <Col sm="2">
-              <Button size="sm">x</Button>
             </Col>
           </Row>
         </Container>
