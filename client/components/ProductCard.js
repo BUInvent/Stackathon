@@ -9,20 +9,35 @@ import {
   CardSubtitle,
   Button
 } from 'reactstrap'
+import {isAbsolute} from 'path'
 
-const Card = ({id, image, name, shortDescription}) => {
+const ProductCard = ({product}) => {
+  const {id, imageURL, name} = product
   return (
-    <div>
-      <Link className="card" to={`/products/${id}`}>
-        <CardImg top width="100%" src={image} alt={`picture-of-${name}`} />
+    <div className="m-2">
+      {' '}
+      <Card
+        style={{
+          width: 250,
+          height: 325
+        }}
+      >
+        <Link to={`/products/${id}`}>
+          <CardImg top width="100%" src={imageURL} alt={`picture-of-${name}`} />
+        </Link>
         <CardBody>
-          <CardTitle>{name}</CardTitle>
-          <CardText>{shortDescription}</CardText>
-          <Button onClick={console.log('add to cart')}>Button</Button>
+          <CardTitle>
+            <h5>{name}</h5>
+          </CardTitle>
+          <Button
+          /* onClick={THUNK: addToCart} */
+          >
+            Buy
+          </Button>
         </CardBody>
-      </Link>
+      </Card>
     </div>
   )
 }
 
-export default Card
+export default ProductCard
