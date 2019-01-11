@@ -15,11 +15,13 @@ const Product = ({
     <Container>
       <Row>
         <Col>
-          <h1>{name}</h1>
+          <h1 className="text-center" style={{fontFamily: 'Permanent Marker'}}>
+            {name}
+          </h1>
         </Col>
         {user.isAdmin && (
           <Col>
-            <Button onClick={`THUNK: 'put products${id}`}>Edit Item</Button>
+            <Button /* onClick=THUNK: 'put products${id} */>Edit Item</Button>
           </Col>
         )}
       </Row>
