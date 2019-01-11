@@ -10,6 +10,13 @@ const Review = db.define('review', {
         msg: 'Review must be at least 10 characters'
       }
     }
+  },
+  score: {
+    type: Sequelize.FLOAT,
+    validate: {
+      min: 0,
+      max: 5
+    }
   }
 })
 
