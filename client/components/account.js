@@ -12,8 +12,16 @@ class Account extends React.Component {
 
     this.toggle = this.toggle.bind(this)
     this.state = {
-      activeTab: '1'
+      activeTab: '1',
+      userAddresses: this.props.userAddresses
     }
+    this.delete = this.delete.bind(this)
+  }
+
+  delete(id) {
+    this.setState(prevState => ({
+      userAddresses: prevState.userAddresses.filter(address => address !== id)
+    }))
   }
 
   toggle(tab) {
@@ -67,9 +75,10 @@ class Account extends React.Component {
             <Row>
               <Col sm="12">
                 <ul>
-                  {this.props.userAddresses.map((address, index) => {
-                    return <Address key={index} {...address} />
-                  })}
+                  <Address
+                    delete={this.delete}
+                    userAddresses={this.state.userAddresses}
+                  />
                 </ul>
               </Col>
             </Row>

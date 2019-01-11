@@ -10,9 +10,17 @@ const defaultProduct = {
   dateDelivered: new Date(2019, 0, 25)
 }
 
-const defaultAddress = {
+const addressOne = {
   name: 'Big Foot',
   address: '1234 Milky Way',
+  city: 'Columbus',
+  state: 'Ohio',
+  zip: 54321
+}
+
+const addressTwo = {
+  name: 'Big Foot',
+  address: '1234 Milky Way 345',
   city: 'Columbus',
   state: 'Ohio',
   zip: 54321
@@ -23,10 +31,7 @@ for (let i = 0; i < 5; i++) {
   defaultOrderedItems.push(defaultProduct)
 }
 
-const defaultAddresses = []
-for (let i = 0; i < 5; i++) {
-  defaultAddresses.push(defaultAddress)
-}
+const defaultAddresses = [addressOne, addressTwo]
 
 export default function(
   state = {
