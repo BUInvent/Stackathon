@@ -11,3 +11,24 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/', async (req, res, next) => {
+  try {
+    const categories = await Category.findAll()
+    res.json(categories)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:categoryid', async (req, res, next) => {
+  try {
+    const targetCategory = await Category.findOne({
+      where: {id: req.params.categoryid}
+    })
+    const products = await targetCategory.getProducts()
+    res.json(products)
+  } catch (err) {
+    next(err)
+  }
+})
