@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Row, Col, Media, Container} from 'reactstrap'
 import {Link} from 'react-router-dom'
-import Reviews from './Reviews'
+import Products from './Products'
 
 export const Home = props => {
   const {email} = props
@@ -90,6 +90,7 @@ export const Home = props => {
           </Col>
         </Row>
       </Container>
+      <Products />
     </React.Fragment>
   )
 }
