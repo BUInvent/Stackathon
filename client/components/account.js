@@ -3,7 +3,6 @@ import {TabContent, TabPane, Nav, NavItem, NavLink, Row, Col} from 'reactstrap'
 import {connect} from 'react-redux'
 import Order from './order'
 import Address from './address'
-
 import classnames from 'classnames'
 
 class Account extends React.Component {
