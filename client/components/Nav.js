@@ -42,7 +42,7 @@ class NavBar extends React.Component {
   // }
   render() {
     return (
-      <div className="sticky-top">
+      <div className="sticky-top mb-5">
         <Navbar color="danger" light expand="md">
           <Link
             className="font-weight-bolder navbar-brand"
@@ -151,10 +151,7 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(NavBar)
 
-/**
- * PROP TYPES
- */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+// Navbar.propTypes = {
+//   handleClick: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired
+// }
