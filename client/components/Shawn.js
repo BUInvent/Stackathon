@@ -36,9 +36,8 @@ export default function Shawn() {
 const product = {
   id: 123,
   imageURL: 'card-placehoder.png',
-  name: 'Thisis20characterslongish',
-  shortDescription:
-    'this is a product etc ffaafafsdafsdaafafaffafafsfaafafaetc etc etc etc!',
+  name: '0123456789012345678901234567890123456789', //40
+  shortDescription: '01234567890123456789012345678901234567890123',
   longDescription:
     'lafkfaljafj alksfjlasfjlajsflj alfjlasfjlafjlaj  lafjsljafsljafsljalsfkj  alfkjalfjlajflajf alfjlafjfj lojlfajlafj lajfljaflkjasflj  lafjlasfjlajsflajsfljasfl  afljasfljaf  faljfaljf asfljaslfjaljf  falkjflafj  lafjjfaljfkladsjlkfasljfa lafjljasflafsjlafsj  aljflajsfljafl af s',
   quantity: 20,
@@ -63,8 +62,7 @@ import Products from './Products'
 export default function Shawn() {
   return (
     <React.Fragment>
-      <Products category="All Products" products={products} />
-      <Product isAdmin={isAdmin} product={products} session={session} />
+      <Products category="All Products" products={products} isAdmin={isAdmin} />
     </React.Fragment>
   )
 }
