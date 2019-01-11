@@ -1,0 +1,10 @@
+{
+  "productData": {
+    "title": "test",
+    "shortDescription": "blah",
+    "longDescription": "blahblah",
+    "price": 5.0,
+    "inventoryQuantity": 10
+  },
+  "categories": [1, 2]
+}
