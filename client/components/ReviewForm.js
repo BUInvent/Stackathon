@@ -1,15 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Row,
-  Col,
-  Container
-} from 'reactstrap'
+import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap'
 
 export default class ReviewForm extends React.Component {
   state = {stars: '0', title: '', text: ''}

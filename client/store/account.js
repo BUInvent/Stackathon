@@ -1,5 +1,6 @@
 const ADD_ORDERED_ITEM = 'ADD_ITEM'
 const ADD_ADDRESS = 'ADD_ADDRESS'
+const REMOVE_ADDRESS = 'REMOVE_ADDRESS'
 
 const defaultProduct = {
   title: 'title',
@@ -10,33 +11,25 @@ const defaultProduct = {
   dateDelivered: new Date(2019, 0, 25)
 }
 
-const addressOne = {
-  name: 'Big Foot',
-  address: '1234 Milky Way',
-  city: 'Columbus',
-  state: 'Ohio',
-  zip: 54321
-}
-
-const addressTwo = {
-  name: 'Big Foot',
-  address: '1234 Milky Way 345',
-  city: 'Columbus',
-  state: 'Ohio',
-  zip: 54321
-}
-
 const defaultOrderedItems = []
 for (let i = 0; i < 5; i++) {
   defaultOrderedItems.push(defaultProduct)
 }
 
-const defaultAddresses = [addressOne, addressTwo]
+export const removeAddress = address => ({
+  type: REMOVE_ADDRESS,
+  address
+})
+
+export const addAddress = address => ({
+  type: ADD_ADDRESS,
+  address
+})
 
 export default function(
   state = {
     orderedItems: defaultOrderedItems,
-    userAddresses: defaultAddresses
+    userAddresses: []
   },
   action
 ) {
@@ -53,7 +46,15 @@ export default function(
     case ADD_ADDRESS:
       return {
         ...state,
-        addresses: [...state.addresses, {...action.address}]
+        userAddresses: [...state.userAddresses, {...action.address}]
+      }
+
+    case REMOVE_ADDRESS:
+      return {
+        ...state,
+        userAddresses: state.userAddresses.filter(
+          address => address !== action.address
+        )
       }
 
     default:
