@@ -24,12 +24,12 @@ const addCategory = category => {
 
 //THUNKS
 export const fetchCategories = () => async dispatch => {
-  const res = await axios.get('/auth/categories')
+  const res = await axios.get('/api/categories')
   dispatch(getCategories(res.data))
 }
 
 export const createCategory = info => async dispatch => {
-  const res = await axios.post('/auth/categories', info)
+  const res = await axios.post('/api/categories', info)
   dispatch(addCategory(res.data))
 }
 

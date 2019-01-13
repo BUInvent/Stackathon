@@ -10,7 +10,7 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     defaultValue: 'Created',
     validate: {
-      isIn: ['Created', 'Processing', 'Completed', 'Cancelled']
+      isIn: ['Created', 'Placed', 'Processing', 'Completed', 'Cancelled']
     }
   },
   contents: {

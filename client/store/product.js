@@ -40,27 +40,27 @@ export const deselectProduct = () => {
 
 //THUNKS
 export const fetchProducts = () => async dispatch => {
-  const res = await axios.get('/auth/products')
+  const res = await axios.get('/api/products')
   dispatch(getProducts(res.data))
 }
 
 export const pickProduct = id => async dispatch => {
-  const res = await axios.get(`/auth/products/${id}`)
+  const res = await axios.get(`/api/products/${id}`)
   dispatch(selectProduct(res.data))
 }
 
 export const categorySelect = id => async dispatch => {
-  const res = await axios.get(`/auth/categories/${id}`)
+  const res = await axios.get(`/api/categories/${id}`)
   dispatch(getProducts(res.data))
 }
 
 export const createProduct = productinfo => async dispatch => {
-  const res = await axios.post('/auth/products', productinfo)
+  const res = await axios.post('/api/products', productinfo)
   dispatch(addProduct(res.data))
 }
 
 export const updateProduct = (productInfo, id) => async dispatch => {
-  await axios.put(`/auth/products/${id}`, productInfo)
+  await axios.put(`/api/products/${id}`, productInfo)
   dispatch(fetchProducts())
 }
 
