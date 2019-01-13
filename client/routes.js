@@ -10,7 +10,8 @@ import {
   Home,
   PaymentPage,
   Account,
-  Shawn
+  Shawn,
+  NewProduct
 } from './components'
 
 import {me} from './store'
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route path="/payment" component={PaymentPage} />
         <Route path="/account" component={Account} />
         <Route path="/shawn" component={Shawn} />
+        <Route path="/newproduct" component={NewProduct} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
