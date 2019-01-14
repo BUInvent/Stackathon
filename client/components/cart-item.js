@@ -11,18 +11,19 @@ import {
 } from 'reactstrap'
 
 const CartItem = props => {
+  const product = props.product
   return (
     <div>
       <Media left>
-        <Media object data-src={props.imgURL} />
+        <Media object data-src={product.imgURL} />
       </Media>
       <Media body>
         <Container>
           <Row>
             <Col sm="10">
-              <Media heading>{props.title}</Media>
-              <p>{props.description}</p>
-              <p>${props.price}</p>
+              <Media heading>{product.title}</Media>
+              <p>{product.shortDescription}</p>
+              <p>${product.price}</p>
             </Col>
             <Col sm="2">
               <Button close />
