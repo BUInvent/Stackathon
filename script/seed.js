@@ -55,23 +55,23 @@ async function seed() {
     Review.create({
       text: 'That was really...something',
       score: 3,
-      userid: 2,
-      productid: 3
+      userId: 2,
+      productId: 3
     }),
     Review.create({
       text: "Yeah, that's haunted alright.",
       score: 5,
-      userid: 1,
-      productid: 1
+      userId: 1,
+      productId: 1
     })
   ])
 
   const orders = await Promise.all([
     Order.create({
       destination: '123 Main St',
-      contents: [{title: 'thing1', quantity: 1}],
+      contents: [{id: 1, quantity: 1}],
       price: 10,
-      userid: 1
+      userId: 1
     })
   ])
 
