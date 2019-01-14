@@ -1,5 +1,3 @@
-/* import React from 'react'
-import Reviews from './Reviews'
 const name = 'am item'
 const isLoggedIn = true
 const reviews = [
@@ -25,14 +23,6 @@ const reviews = [
   }
 ]
 
-export default function Shawn() {
-  return (
-    <React.Fragment>
-      <Reviews name={name} isLoggedIn={isLoggedIn} reviews={reviews} />
-    </React.Fragment>
-  )
-} */
-
 const product = {
   id: 123,
   imageURL: 'card-placehoder.png',
@@ -50,19 +40,19 @@ const products = Array(100)
     item.id = index + 1
     return item
   })
-
 const session = {cart: {name: 'Thisis20characterslongish'}}
 const isAdmin = false
-
 import React from 'react'
-import ProductCard from './ProductCard'
 import Product from './Product'
 import Products from './Products'
+import Reviews from './Reviews'
 
 export default function Shawn() {
   return (
-    <React.Fragment>
+    <>
       <Products category="All Products" products={products} isAdmin={isAdmin} />
-    </React.Fragment>
+      <Product isAdmin={isAdmin} product={product} session={session} />
+      <Reviews name={name} isLoggedIn={isLoggedIn} reviews={reviews} />
+    </>
   )
 }

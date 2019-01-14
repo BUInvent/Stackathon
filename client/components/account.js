@@ -9,13 +9,19 @@ class Account extends React.Component {
   constructor(props) {
     super(props)
 
-    this.toggle = this.toggle.bind(this)
     this.state = {
-      activeTab: '1'
+      activeTab: '1',
+      userAddresses: this.props.userAddresses
     }
   }
 
-  toggle(tab) {
+  delete = id => {
+    this.setState(prevState => ({
+      userAddresses: prevState.userAddresses.filter(address => address !== id)
+    }))
+  }
+
+  toggle = tab => {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab
@@ -66,9 +72,7 @@ class Account extends React.Component {
             <Row>
               <Col sm="12">
                 <ul>
-                  {this.props.userAddresses.map((address, index) => {
-                    return <Address key={index} {...address} />
-                  })}
+                  <Address />
                 </ul>
               </Col>
             </Row>
