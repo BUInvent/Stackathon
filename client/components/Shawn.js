@@ -1,3 +1,4 @@
+// DUMMY DATA
 const name = 'am item'
 const isLoggedIn = true
 const reviews = [
@@ -25,8 +26,8 @@ const reviews = [
 
 const product = {
   id: 123,
-  imageURL: 'card-placehoder.png',
-  name: '0123456789012345678901234567890123456789', //40
+  imgURL: 'default-image.jpg',
+  title: '0123456789012345678901234567890123456789', //40
   shortDescription: '01234567890123456789012345678901234567890123',
   longDescription:
     'lafkfaljafj alksfjlasfjlajsflj alfjlasfjlafjlaj  lafjsljafsljafsljalsfkj  alfkjalfjlajflajf alfjlafjfj lojlfajlafj lajfljaflkjasflj  lafjlasfjlajsflajsfljasfl  afljasfljaf  faljfaljf asfljaslfjaljf  falkjflafj  lafjjfaljfkladsjlkfasljfa lafjljasflafsjlafsj  aljflajsfljafl af s',
@@ -42,17 +43,20 @@ const products = Array(100)
   })
 const session = {cart: {name: 'Thisis20characterslongish'}}
 const isAdmin = false
+
+// IMPORTS
 import React from 'react'
-import Product from './Product'
 import Products from './Products'
+import Product from './Product'
 import Reviews from './Reviews'
 
 export default function Shawn() {
   return (
     <>
-      <Products category="All Products" products={products} isAdmin={isAdmin} />
-      <Product isAdmin={isAdmin} product={product} session={session} />
-      <Reviews name={name} isLoggedIn={isLoggedIn} reviews={reviews} />
+      <Products />
+      {/* ProductCard: id, imageURL, name, shortDescription */}
+      {/* <Product isAdmin={isAdmin} product={product} session={session} />
+      <Reviews name={name} isLoggedIn={isLoggedIn} reviews={reviews} /> */}
     </>
   )
 }

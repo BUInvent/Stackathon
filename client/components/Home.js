@@ -1,13 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Row, Col, Media, Container} from 'reactstrap'
+import {Row, Col, Container} from 'reactstrap'
 import {Link} from 'react-router-dom'
 import Products from './Products'
 
-export const Home = props => {
-  const {email} = props
-
+export const Home = () => {
   return (
     <React.Fragment>
       <Container>
@@ -93,16 +89,4 @@ export const Home = props => {
       <Products />
     </React.Fragment>
   )
-}
-
-const mapState = state => {
-  return {
-    email: state.user.email
-  }
-}
-
-export default connect(mapState)(Home)
-
-Home.propTypes = {
-  email: PropTypes.string
 }

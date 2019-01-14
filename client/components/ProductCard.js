@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import {
   Card,
   CardImg,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
@@ -11,7 +10,7 @@ import {
 } from 'reactstrap'
 
 const ProductCard = ({product}) => {
-  const {id, imageURL, name, shortDescription} = product
+  const {id, imgURL, title, shortDescription} = product
   return (
     <Card
       style={{
@@ -21,11 +20,11 @@ const ProductCard = ({product}) => {
       className="m-2"
     >
       <Link to={`/products/${id}`}>
-        <CardImg top width="100%" src={imageURL} alt={`picture-of-${name}`} />
+        <CardImg top width="100%" src={imgURL} alt={`picture-of-${title}`} />
       </Link>
       <CardBody style={{position: 'relative'}}>
         <CardTitle>
-          <strong>{name}</strong>
+          <strong>{title}</strong>
         </CardTitle>
         <CardSubtitle>{shortDescription}</CardSubtitle>
         <Button
