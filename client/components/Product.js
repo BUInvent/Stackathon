@@ -1,14 +1,14 @@
 import React from 'react'
 import {Container, Row, Col, Button} from 'reactstrap'
 
-const Product = ({isAdmin, product, session}) => {
-  const {imageURL, name, longDescription, quantity, price} = product
+const Product = ({isAdmin, product, cart}) => {
+  const {imgURL, title, longDescription, inventoryQuantity, price} = product
   return (
     <Container>
       <Row className="mt-4">
         <Col>
           <h1 className="text-center" style={{fontFamily: 'Permanent Marker'}}>
-            {name}
+            {title}
           </h1>
         </Col>
         {isAdmin && (
@@ -22,8 +22,8 @@ const Product = ({isAdmin, product, session}) => {
           <div style={{maxWidth: 800}}>
             <img
               className="img-fluid"
-              src={imageURL}
-              alt={`picture-of-${name}`}
+              src={imgURL}
+              alt={`picture-of-${title}`}
             />
           </div>
         </Col>
@@ -36,7 +36,7 @@ const Product = ({isAdmin, product, session}) => {
 
       <Row className="mt-2">
         <Col>
-          <h6>There are {quantity} available</h6>
+          <h6>There are {inventoryQuantity} available</h6>
         </Col>
       </Row>
       <Row className="mt-2">
@@ -51,7 +51,7 @@ const Product = ({isAdmin, product, session}) => {
           </Button>
         </Col>
       </Row>
-      {session.cart.name && (
+      {cart && (
         <Row className="mt-4">
           <Col>
             <h6>This item has been added to your cart</h6>

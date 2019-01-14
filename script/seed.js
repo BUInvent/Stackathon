@@ -25,7 +25,8 @@ async function seed() {
       longDescription:
         'Creepy looking thing, will ensure paranormal activity in your home. Not suitable for children.',
       price: 25,
-      inventoryQuantity: 2
+      inventoryQuantity: 2,
+      imgURL: 'magical.jpg'
     }),
     Product.create({
       title: 'Bigfoot Sighting',
@@ -33,7 +34,8 @@ async function seed() {
       longDescription:
         'Guided hike with guaranteed cryptid encounter. Recording devices not included in package.',
       price: 150,
-      inventoryQuantity: 10
+      inventoryQuantity: 10,
+      imgURL: 'monsterous.jpg'
     }),
     Product.create({
       title: 'Alien Abduction',
@@ -41,7 +43,8 @@ async function seed() {
       longDescription:
         'Sometime in the next week, your sleep will be interrupted by several aliens who want to get to know you better. Exact species of alien varies.',
       price: 75,
-      inventoryQuantity: 5
+      inventoryQuantity: 5,
+      imgURL: 'otherworldly.jpg'
     })
   ])
   products[0].addCategory(categories[1])

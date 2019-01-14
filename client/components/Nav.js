@@ -1,45 +1,30 @@
 import React from 'react'
 import {
-  Button,
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from 'reactstrap'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import axios from 'axios'
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    // this.handleClick = this.handleClick.bind(this)
-    this.state = {
-      isOpen: false
-    }
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+  state = {
+    isOpen: false
   }
 
-  // handleClick() {
-  //   if (this.props.isLoggedIn) {
-  //     axios.post('/auth/logout')
-  //   }
-  // }
+  toggle = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }))
+  }
+
   render() {
     return (
       <div className="sticky-top mb-5">
@@ -150,8 +135,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(NavBar)
-
-// Navbar.propTypes = {
-//   handleClick: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired
-// }
