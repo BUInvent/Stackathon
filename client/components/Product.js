@@ -5,7 +5,7 @@ const Product = ({isAdmin, product, session}) => {
   const {imageURL, name, longDescription, quantity, price} = product
   return (
     <Container>
-      <Row className="mt-2">
+      <Row className="mt-4">
         <Col>
           <h1 className="text-center" style={{fontFamily: 'Permanent Marker'}}>
             {name}
@@ -13,15 +13,14 @@ const Product = ({isAdmin, product, session}) => {
         </Col>
         {isAdmin && (
           <Col>
-            <Button /* HUNK: 'put products${id} */>Edit Item</Button>
+            <Button /* THUNK: 'put products${id} */>Edit Item</Button>
           </Col>
         )}
       </Row>
       <Row className="mt-2">
-        <Col>
-          <div className="mt-2 justify-content-center">
+        <Col className="d-flex flex-row justify-content-center">
+          <div style={{maxWidth: 800}}>
             <img
-              width="100%"
               className="img-fluid"
               src={imageURL}
               alt={`picture-of-${name}`}
