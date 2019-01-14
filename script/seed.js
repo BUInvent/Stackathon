@@ -47,9 +47,9 @@ async function seed() {
       imgURL: 'otherworldly.jpg'
     })
   ])
-  products[0].addCategory(categories[1])
-  products[1].addCategory(categories[0])
-  products[2].addCategory(categories[2])
+  products[0].setCategory(categories[1])
+  products[1].setCategory(categories[0])
+  products[2].setCategory(categories[2])
 
   const reviews = await Promise.all([
     Review.create({

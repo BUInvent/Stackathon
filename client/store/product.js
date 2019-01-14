@@ -49,8 +49,8 @@ export const pickProduct = id => async dispatch => {
   dispatch(selectProduct(res.data))
 }
 
-export const categorySelect = id => async dispatch => {
-  const res = await axios.get(`/api/categories/${id}`)
+export const categorySelect = name => async dispatch => {
+  const res = await axios.get(`/api/categories/${name}`)
   dispatch(getProducts(res.data))
 }
 

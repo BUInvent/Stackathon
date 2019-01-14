@@ -3,7 +3,7 @@ import {Row, Col, Container} from 'reactstrap'
 import {Link} from 'react-router-dom'
 import Products from './Products'
 
-export const Home = () => {
+const Home = () => {
   return (
     <React.Fragment>
       <Container>
@@ -90,3 +90,5 @@ export const Home = () => {
     </React.Fragment>
   )
 }
+
+export default Home

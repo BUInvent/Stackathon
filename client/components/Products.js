@@ -14,9 +14,11 @@ class Products extends Component {
   }
 
   componentDidMount = () => {
-    this.state.category === 'products'
-      ? this.props.fetchProducts()
-      : this.props.categorySelect(this.state.category)
+    if (this.state.category === 'products') {
+      this.props.fetchProducts()
+    } else {
+      this.props.categorySelect(this.state.category)
+    }
   }
 
   handleChange = e => {
@@ -99,12 +101,13 @@ class Products extends Component {
 }
 
 const mapStatetoProps = state => ({
-  user: state.user
+  user: state.user,
+  products: state.product.products
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
-  categorySelect: id => dispatch(categorySelect(id))
+  categorySelect: name => dispatch(categorySelect(name))
 })
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Products)
