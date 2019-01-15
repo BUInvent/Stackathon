@@ -50,6 +50,7 @@ export const getCart = id => async dispatch => {
 }
 
 export const orderUpdate = (id, orderinfo) => async dispatch => {
+  // id = state.order.order.id / orderinfo = {userId, DONTNEEDdestination, [{productId, qty}]}
   const updatedOrder = await axios.put(`/api/orders/${id}`, orderinfo)
   dispatch(updateOrder(updatedOrder))
 }

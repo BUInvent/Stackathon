@@ -8,7 +8,7 @@ const ADD_PRODUCT = 'ADD_PRODUCT'
 
 //DEFAULT STATE
 const defaultProducts = []
-const defaultProduct = {}
+const defaultProduct = [{}]
 
 //ACTIONS
 const getProducts = products => {

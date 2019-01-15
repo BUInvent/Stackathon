@@ -86,7 +86,7 @@ class Product extends Component {
 
 const mapStatetoProps = state => ({
   user: state.user,
-  product: state.product.selectedProduct
+  product: state.product.selectedProduct[0]
 })
 
 const mapDispatchToProps = dispatch => ({
