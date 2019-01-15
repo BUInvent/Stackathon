@@ -11,7 +11,6 @@ import {
 } from 'reactstrap'
 
 const CartItem = props => {
-  console.log(props.product)
   const product = props.product
   if (product) {
     return (
@@ -28,14 +27,27 @@ const CartItem = props => {
                 <p>${product.price}</p>
               </Col>
               <Col sm="2">
-                <Button close />
+                <Button
+                  close
+                  onClick={props.clickHandler}
+                  id={product.id - 1}
+                />
                 <Form>
                   <Label for="quantity">Quantity</Label>
-                  <Input type="select" name="select" id="quantity">
-                    <option>1</option>
-                    <option>2</option>
-                  </Input>
-                  <Button>Submit</Button>
+                  <Input
+                    type="number"
+                    name="number"
+                    id="quantity"
+                    min="1"
+                    defaultValue={props.quantity}
+                  />
+                  <Button
+                    type="submit"
+                    onClick={props.submitHandler}
+                    id={product.id - 1}
+                  >
+                    Submit
+                  </Button>
                 </Form>
               </Col>
             </Row>
