@@ -33,12 +33,12 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:orderid', async (req, res, next) => {
   try {
-    const orderToUpdate = await Order.findOne({
+    const orderToUpdate = await Order.findOrCreate({
       where: {
-        id: req.params.id
+        id: req.params.orderid
       }
     })
-    const updatedOrder = await orderToUpdate.update(...req.body)
+    const updatedOrder = await orderToUpdate[0].update(req.body)
     res.json(updatedOrder)
   } catch (err) {
     next(err)
@@ -50,7 +50,7 @@ router.get('/active/:userid', async (req, res, next) => {
     const order = await Order.findOne({
       where: {
         userId: req.params.userid,
-        status: 'Created'
+        orderStatus: 'Created'
       }
     })
     res.json(order)

@@ -5,11 +5,11 @@ const Order = db.define('order', {
   destination: {
     type: Sequelize.STRING
   },
-  status: {
+  orderStatus: {
     type: Sequelize.STRING,
     defaultValue: 'Created',
     validate: {
-      isIn: ['Created', 'Placed', 'Processing', 'Completed', 'Cancelled']
+      isIn: [['Created', 'Placed', 'Processing', 'Completed', 'Cancelled']]
     }
   },
   contents: {
