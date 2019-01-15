@@ -6,13 +6,53 @@ import {getCart, orderUpdate} from '../store/order'
 import {fetchProducts} from '../store/product'
 
 class Cart extends Component {
-  componenDidtMount() {}
-
+  constructor() {
+    super()
+    this.state = {cartprice: 0}
+  }
   componentDidUpdate() {
-    if (this.props.products < 1) this.props.fetchProducts()
+    if (this.props.products.length < 1) this.props.fetchProducts()
     if (this.props.user.id && !this.props.cartItems) {
       this.props.getCart(this.props.user.id)
     }
+  }
+
+  clickHandler = evt => {
+    const newContents = this.props.cartItems.map(item => {
+      if (item.id !== Number(evt.target.parentNode.id)) {
+        return item
+      }
+    })
+    const updatedOrder = {
+      contents: newContents
+    }
+    this.props.orderUpdate(this.props.cartId, updatedOrder)
+  }
+
+  submitHandler = evt => {
+    evt.preventDefault()
+    const newContents = this.props.cartItems.map(item => {
+      if (item.id === Number(evt.target.id + 1)) {
+        return {
+          id: item.id,
+          quantity: evt.target.previousSibling.value
+        }
+      } else {
+        return item
+      }
+    })
+    const updatedOrder = {
+      contents: newContents
+    }
+    this.props.orderUpdate(this.props.cartId, updatedOrder)
+  }
+
+  checkoutHandler = evt => {
+    evt.preventDefault()
+    const updatedOrder = {
+      orderStatus: 'Placed'
+    }
+    this.props.orderUpdate(this.props.cartId, updatedOrder)
   }
 
   render() {
@@ -26,27 +66,32 @@ class Cart extends Component {
         <Row>
           <Col sm="12" md={{size: 9}}>
             <ul>
-              {this.props.cartItems ? (
+              {this.props.cartItems && this.props.cartItems[0] ? (
                 this.props.cartItems.map(item => {
                   return (
                     <CartItem
                       key={item.id}
                       product={this.props.products[item.id - 1]}
+                      quantity={item.quantity}
+                      submitHandler={this.submitHandler}
+                      clickHandler={this.clickHandler}
                     />
                   )
                 })
               ) : (
-                <p>Loading...</p>
+                <p>Cart Is Empty</p>
               )}
             </ul>
           </Col>
-          <Col sm="12" md={{size: 1, offset: 1}}>
-            <p>${this.props.cartSum}</p>
-            <p>$5.00</p>
-            <p>$20.00</p>
+          <Col sm="12" md={{size: 3}}>
+            <p>Cart Sum: ${this.state.cartprice}</p>
+            <p>Tax: $5.00</p>
+            <p>Shipping: $20.00</p>
             <p>___________</p>
-            <p>${this.props.cartSum + 5 + 20}</p>
-            <button>Checkout</button>
+            <p>Total Price: ${this.state.cartprice + 5 + 20}</p>
+            <button type="button" onClick={this.checkoutHandler}>
+              Checkout
+            </button>
           </Col>
         </Row>
       </Container>
@@ -57,6 +102,7 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     cartItems: state.order.order.contents,
+    cartId: state.order.order.id,
     user: state.user,
     products: state.product.products
   }
@@ -65,7 +111,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCart: id => dispatch(getCart(id)),
-    orderUpdate: order => dispatch(orderUpdate(order)),
+    orderUpdate: (id, order) => dispatch(orderUpdate(id, order)),
     fetchProducts: () => dispatch(fetchProducts())
   }
 }

@@ -52,7 +52,7 @@ export const getCart = id => async dispatch => {
 export const orderUpdate = (id, orderinfo) => async dispatch => {
   // id = state.order.order.id / orderinfo = {userId, DONTNEEDdestination, [{productId, qty}]}
   const updatedOrder = await axios.put(`/api/orders/${id}`, orderinfo)
-  dispatch(updateOrder(updatedOrder))
+  dispatch(updateOrder(updatedOrder.data))
 }
 
 //REDUCER
@@ -69,9 +69,10 @@ export default function(
     case ACTIVATE_ORDER:
       return {
         ...state,
-        order: action.order
+        order: action.order || state.order
       }
     case UPDATE_ORDER:
+      console.log(action.order)
       const newOrders = state.orders.map(order => {
         if (order.id !== action.order.id) {
           return order
@@ -79,11 +80,16 @@ export default function(
           return action.order
         }
       })
-      if (action.order.status === 'Placed') {
+      if (action.order.orderStatus === 'Placed') {
+        const newOrder = {
+          orderStatus: 'Created',
+          contents: [],
+          userId: state.order.userId
+        }
         return {
           ...state,
           orders: newOrders,
-          order: defaultOrder
+          order: newOrder
         }
       } else {
         return {
