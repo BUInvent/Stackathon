@@ -3,8 +3,7 @@ const db = require('../db')
 
 const Order = db.define('order', {
   destination: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   status: {
     type: Sequelize.STRING,
@@ -15,9 +14,6 @@ const Order = db.define('order', {
   },
   contents: {
     type: Sequelize.ARRAY(Sequelize.JSON)
-  },
-  price: {
-    type: Sequelize.FLOAT
   }
 })
 
