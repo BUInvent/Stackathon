@@ -1,21 +1,16 @@
-const ADD_ORDERED_ITEM = 'ADD_ITEM'
+import axios from 'axios'
+
+//ACTION TYPES
+const ADD_ORDER = 'ADD_ORDER'
 const ADD_ADDRESS = 'ADD_ADDRESS'
 const REMOVE_ADDRESS = 'REMOVE_ADDRESS'
+const GET_ORDERS = 'GET_ORDERS'
 
-const defaultProduct = {
-  title: 'title',
-  price: 5.0,
-  description: 'Placeholder Product',
-  imgURL: '/default-image.jpg',
-  dateOrdered: new Date(2019, 0, 3),
-  dateDelivered: new Date(2019, 0, 25)
-}
+//DEFAULT STATE
+const defaultOrders = []
+const defaultAddresses = []
 
-const defaultOrderedItems = []
-for (let i = 0; i < 5; i++) {
-  defaultOrderedItems.push(defaultProduct)
-}
-
+//ACTIONS
 export const removeAddress = address => ({
   type: REMOVE_ADDRESS,
   address
@@ -26,21 +21,45 @@ export const addAddress = address => ({
   address
 })
 
+const addOrder = order => {
+  return {
+    type: ADD_ORDER,
+    order
+  }
+}
+
+const getOrders = orders => {
+  return {
+    type: GET_ORDERS,
+    orders
+  }
+}
+
+//THUNKS
+export const fetchOrders = () => async dispatch => {
+  const res = await axios.get('/api/orders')
+  dispatch(getOrders(res.data))
+}
+
+export const createOrder = orderinfo => async dispatch => {
+  const res = await axios.post('/api/orders', orderinfo)
+  dispatch(addOrder(res.data))
+}
+
 export default function(
-  state = {
-    orderedItems: defaultOrderedItems,
-    userAddresses: []
-  },
+  state = {orders: defaultOrders, userAddresses: defaultAddresses},
   action
 ) {
   switch (action.type) {
-    case ADD_ORDERED_ITEM:
+    case GET_ORDERS:
       return {
         ...state,
-        orderedItems: [
-          ...state.orderedItems,
-          {...action.item, quantity: action.quantity}
-        ]
+        orders: action.orders
+      }
+    case ADD_ORDER:
+      return {
+        ...state,
+        orders: [...state.orders, {...action.order}]
       }
 
     case ADD_ADDRESS:
