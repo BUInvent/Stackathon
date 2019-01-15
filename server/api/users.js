@@ -22,9 +22,10 @@ router.get('/:userid', async (req, res, next) => {
       where: {id: req.params.userid},
       attributes: ['id', 'email', 'isAdmin']
     })
-    const reviews = await User.getReviews()
-    const orders = await User.getOrders()
-    res.json(user, reviews, orders)
+    const reviews = await user.getReviews()
+    const orders = await user.getOrders()
+    const data = [user, reviews, orders]
+    res.json(data)
   } catch (err) {
     next(err)
   }
