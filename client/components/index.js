@@ -3,6 +3,7 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+export {default as Product} from './Product'
 export {default as Magic} from './Magic'
 export {default as Monsters} from './Monsters'
 export {default as Unearthly} from './Unearthly'

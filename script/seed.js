@@ -20,21 +20,20 @@ async function seed() {
 
   const products = await Promise.all([
     Product.create({
+      title: 'Slight of Hand or is it?',
+      shortDescription: 'No Way!',
+      longDescription: 'Amazing and all that jazz.',
+      price: 25,
+      inventoryQuantity: 2,
+      imgURL: '/magical.jpg'
+    }),
+    Product.create({
       title: 'Bigfoot Sighting',
       shortDescription: 'Make sure to stabilize your camera',
       longDescription:
         'Guided hike with guaranteed cryptid encounter. Recording devices not included in package.',
       price: 150,
       inventoryQuantity: 10,
-      imgURL: '/magical.jpg'
-    }),
-    Product.create({
-      title: 'Haunted Doll',
-      shortDescription: 'Spooky!',
-      longDescription:
-        'Creepy looking thing, will ensure paranormal activity in your home. Not suitable for children.',
-      price: 25,
-      inventoryQuantity: 2,
       imgURL: '/monsterous.jpg'
     }),
     Product.create({
@@ -47,8 +46,8 @@ async function seed() {
       imgURL: '/otherworldly.jpg'
     })
   ])
-  products[0].setCategory(categories[1])
-  products[1].setCategory(categories[0])
+  products[0].setCategory(categories[0])
+  products[1].setCategory(categories[1])
   products[2].setCategory(categories[2])
 
   const reviews = await Promise.all([

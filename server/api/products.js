@@ -15,8 +15,8 @@ router.get('/', async (req, res, next) => {
 router.get('/:productid', async (req, res, next) => {
   try {
     const product = await Product.findOne({where: {id: req.params.id}})
-    const reviews = await Review.findAll({where: {productid: product.id}})
-    res.json(product, reviews)
+    /*    const reviews = await Review.findAll({where: {productid: product.id}}) */
+    res.json(product)
   } catch (err) {
     next(err)
   }

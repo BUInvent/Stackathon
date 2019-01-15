@@ -15,7 +15,7 @@ import {
   Magic,
   Monsters,
   Unearthly,
-  Products
+  Product
 } from './components'
 import {me} from './store'
 
@@ -31,7 +31,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
-        <Route exact path="/product:id" component={Home} />
+        <Route path="/product/:id" component={Product} />
         <Route path="/magic" component={Magic} />
         <Route path="/monsters" component={Monsters} />
         <Route path="/unearthly" component={Unearthly} />

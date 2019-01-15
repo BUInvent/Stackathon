@@ -33,7 +33,7 @@ const Product = db.define('product', {
   },
   imgURL: {
     type: Sequelize.STRING,
-    defaultValue: 'default-image.jpg'
+    defaultValue: '/default-image.jpg'
   },
   available: {
     type: Sequelize.BOOLEAN,
