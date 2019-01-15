@@ -59,7 +59,7 @@ export default function(state = {reviews: defaultReviews}, action) {
         ...state,
         reviews: [...state.reviews, action.review]
       }
-    case DELETE_REVIEW:
+    case REMOVE_REVIEW:
       const newReviews = state.reviews.map(review => {
         if (review.id !== action.id) {
           return review
