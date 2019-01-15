@@ -2,8 +2,19 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Container, Row, Col} from 'reactstrap'
 import CartItem from './cart-item'
+import {getCart, orderUpdate} from '../store/order'
+import {fetchProducts} from '../store/product'
 
 class Cart extends Component {
+  componenDidtMount() {}
+
+  componentDidUpdate() {
+    if (this.props.products < 1) this.props.fetchProducts()
+    if (this.props.user.id && !this.props.cartItems) {
+      this.props.getCart(this.props.user.id)
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -15,10 +26,18 @@ class Cart extends Component {
         <Row>
           <Col sm="12" md={{size: 9}}>
             <ul>
-              {this.props.cartItems.map(item => {
-                //debugger
-                return <CartItem {...item} />
-              })}
+              {this.props.cartItems ? (
+                this.props.cartItems.map(item => {
+                  return (
+                    <CartItem
+                      key={item.id}
+                      product={this.props.products[item.id - 1]}
+                    />
+                  )
+                })
+              ) : (
+                <p>Loading...</p>
+              )}
             </ul>
           </Col>
           <Col sm="12" md={{size: 1, offset: 1}}>
@@ -37,9 +56,18 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    cartItems: state.cart.cart,
-    cartSum: state.cart.price
+    cartItems: state.order.order.contents,
+    user: state.user,
+    products: state.product.products
   }
 }
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = dispatch => {
+  return {
+    getCart: id => dispatch(getCart(id)),
+    orderUpdate: order => dispatch(orderUpdate(order)),
+    fetchProducts: () => dispatch(fetchProducts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
