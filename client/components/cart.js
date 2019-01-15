@@ -6,9 +6,13 @@ import {getCart, orderUpdate} from '../store/order'
 import {fetchProducts} from '../store/product'
 
 class Cart extends Component {
-  componentDidMount() {
-    this.props.fetchProducts()
-    this.props.getCart(this.props.user.id)
+  componenDidtMount() {}
+
+  componentDidUpdate() {
+    if (this.props.products < 1) this.props.fetchProducts()
+    if (this.props.user.id && !this.props.cartItems) {
+      this.props.getCart(this.props.user.id)
+    }
   }
 
   render() {
@@ -22,10 +26,18 @@ class Cart extends Component {
         <Row>
           <Col sm="12" md={{size: 9}}>
             <ul>
-              {this.props.cartItems &&
+              {this.props.cartItems ? (
                 this.props.cartItems.map(item => {
-                  return <CartItem product={this.state.products[item.id - 1]} />
-                })}
+                  return (
+                    <CartItem
+                      key={item.id}
+                      product={this.props.products[item.id - 1]}
+                    />
+                  )
+                })
+              ) : (
+                <p>Loading...</p>
+              )}
             </ul>
           </Col>
           <Col sm="12" md={{size: 1, offset: 1}}>
@@ -44,7 +56,7 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    cartItems: state.order.order.content,
+    cartItems: state.order.order.contents,
     user: state.user,
     products: state.product.products
   }
@@ -52,7 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCart: () => dispatch(getCart()),
+    getCart: id => dispatch(getCart(id)),
     orderUpdate: order => dispatch(orderUpdate(order)),
     fetchProducts: () => dispatch(fetchProducts())
   }
