@@ -23,15 +23,14 @@ User.hasMany(Order)
 Order.belongsTo(User)
 //Order.hasMany(Product)
 //Product.belongsToMany(Order, {through: 'OrderProduct'})
-
 Review.belongsTo(User)
 Review.belongsTo(Product)
 User.hasMany(Review)
 Product.hasMany(Review)
 Product.belongsTo(Category)
 Category.hasMany(Product)
-Product.belongsToMany(Tag, {through: 'ProductTag'})
-Tag.belongsToMany(Product, {through: 'ProductTag'})
+Product.belongsToMany(Tag, {through: 'productTags'})
+Tag.belongsToMany(Product, {through: 'productTags'})
 
 module.exports = {
   User,

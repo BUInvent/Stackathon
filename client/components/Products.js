@@ -3,8 +3,7 @@ import {Container, Form, Input, Button, Col, Row} from 'reactstrap'
 import ProductCard from './ProductCard'
 import ProductForm from './ProductForm'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/product'
-import {categorySelect} from '../store/product'
+import {fetchProducts, categorySelect} from '../store/product'
 
 class Products extends Component {
   state = {
@@ -17,7 +16,7 @@ class Products extends Component {
     if (this.state.category === 'products') {
       this.props.fetchProducts()
     } else {
-      this.props.categorySelect(this.state.category)
+      this.props.categorySelect(this.props.category)
     }
   }
 
@@ -41,7 +40,6 @@ class Products extends Component {
     }))
   }
   render() {
-    // need to redo category to come from props the right way
     const {products, user} = this.props
     const {showProductForm} = this.state
     return (

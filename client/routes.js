@@ -11,14 +11,14 @@ import {
   PaymentPage,
   Account,
   Shawn,
-  NewProduct
+  NewProduct,
+  Magic,
+  Monsters,
+  Unearthly,
+  Products
 } from './components'
-
 import {me} from './store'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -31,6 +31,10 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
+        <Route exact path="/product:id" component={Home} />
+        <Route path="/magic" component={Magic} />
+        <Route path="/monsters" component={Monsters} />
+        <Route path="/unearthly" component={Unearthly} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />

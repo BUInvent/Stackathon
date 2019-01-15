@@ -5,7 +5,7 @@ import Products from './Products'
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <>
       <Container>
         <Row>
           <Col>
@@ -87,7 +87,7 @@ const Home = () => {
         </Row>
       </Container>
       <Products />
-    </React.Fragment>
+    </>
   )
 }
 

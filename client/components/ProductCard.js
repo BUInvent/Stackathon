@@ -19,7 +19,7 @@ const ProductCard = ({product}) => {
       }}
       className="m-2"
     >
-      <Link to={`/products/${id}`}>
+      <Link to={`/product/${id}`}>
         <CardImg top width="100%" src={imgURL} alt={`picture-of-${title}`} />
       </Link>
       <CardBody style={{position: 'relative'}}>
