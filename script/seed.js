@@ -13,20 +13,19 @@ async function seed() {
   ])
 
   const categories = await Promise.all([
-    Category.create({name: 'Magic'}),
-    Category.create({name: 'Monsters'}),
-    Category.create({name: 'Unearthly'})
+    Category.create({name: 'magic'}),
+    Category.create({name: 'monsters'}),
+    Category.create({name: 'unearthly'})
   ])
 
   const products = await Promise.all([
     Product.create({
-      title: 'Haunted Doll',
-      shortDescription: 'Spooky!',
-      longDescription:
-        'Creepy looking thing, will ensure paranormal activity in your home. Not suitable for children.',
+      title: 'Slight of Hand or is it?',
+      shortDescription: 'No Way!',
+      longDescription: 'Amazing and all that jazz.',
       price: 25,
       inventoryQuantity: 2,
-      imgURL: 'magical.jpg'
+      imgURL: '/magical.jpg'
     }),
     Product.create({
       title: 'Bigfoot Sighting',
@@ -35,7 +34,7 @@ async function seed() {
         'Guided hike with guaranteed cryptid encounter. Recording devices not included in package.',
       price: 150,
       inventoryQuantity: 10,
-      imgURL: 'monsterous.jpg'
+      imgURL: '/monsterous.jpg'
     }),
     Product.create({
       title: 'Alien Abduction',
@@ -44,12 +43,12 @@ async function seed() {
         'Sometime in the next week, your sleep will be interrupted by several aliens who want to get to know you better. Exact species of alien varies.',
       price: 75,
       inventoryQuantity: 5,
-      imgURL: 'otherworldly.jpg'
+      imgURL: '/otherworldly.jpg'
     })
   ])
-  products[0].addCategory(categories[1])
-  products[1].addCategory(categories[0])
-  products[2].addCategory(categories[2])
+  products[0].setCategory(categories[0])
+  products[1].setCategory(categories[1])
+  products[2].setCategory(categories[2])
 
   const reviews = await Promise.all([
     Review.create({

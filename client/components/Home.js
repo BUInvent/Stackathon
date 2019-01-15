@@ -3,9 +3,9 @@ import {Row, Col, Container} from 'reactstrap'
 import {Link} from 'react-router-dom'
 import Products from './Products'
 
-export const Home = () => {
+const Home = () => {
   return (
-    <React.Fragment>
+    <>
       <Container>
         <Row>
           <Col>
@@ -87,6 +87,8 @@ export const Home = () => {
         </Row>
       </Container>
       <Products />
-    </React.Fragment>
+    </>
   )
 }
+
+export default Home
