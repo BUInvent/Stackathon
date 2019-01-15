@@ -4,18 +4,18 @@ import Stars from './Stars'
 import {Link} from 'react-router-dom'
 
 const Review = ({review}) => {
-  const {stars, username, userId, date, title, text} = review
+  const {stars, user, date, title, text} = review
   return (
     <React.Fragment>
-      <Row className="mt-4">
+      <Row className="mt-4 mb-4">
         <Col>
           <Stars stars={+stars} />
         </Col>
       </Row>
       <Row className="mt-2">
         <Col sm="4">
-          <Link to={`/users/${userId}`}>
-            <h6>{username}</h6>
+          <Link to={`/users/${user.id}`}>
+            <h6>{user.email}</h6>
           </Link>
         </Col>
         <Col sm="4">

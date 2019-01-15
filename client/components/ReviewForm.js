@@ -1,8 +1,16 @@
 import React from 'react'
 import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap'
-
-export default class ReviewForm extends React.Component {
-  state = {stars: '0', title: '', text: ''}
+import {createReview} from '../store/review'
+import {connect} from 'react-redux'
+class ReviewForm extends React.Component {
+  state = {
+    stars: '0',
+    title: '',
+    text: '',
+    userId: this.props.user.id,
+    productId: this.props.productId,
+    date: new Date().toISOString().split('T')[0]
+  }
 
   handleChange = e => {
     this.setState({
@@ -12,10 +20,14 @@ export default class ReviewForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log({...this.state})
-    this.setState({stars: '0', title: '', text: ''})
-    // will need this.props.user to add to profile with
-    // THUNK: put OR post
+    console.log(this.state)
+    this.setState({
+      stars: '0',
+      title: '',
+      text: ''
+    })
+    this.props.createReview(this.state)
+    this.props.toggleReviewForm()
   }
   render() {
     return (
@@ -71,3 +83,14 @@ export default class ReviewForm extends React.Component {
     )
   }
 }
+
+const mapStatetoProps = state => ({
+  user: state.user,
+  products: state.product.products
+})
+
+const mapDispatchToProps = dispatch => ({
+  createReview: review => dispatch(createReview(review))
+})
+
+export default connect(null, mapDispatchToProps)(ReviewForm)

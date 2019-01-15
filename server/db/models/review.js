@@ -2,6 +2,13 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Review = db.define('review', {
+  title: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   text: {
     type: Sequelize.TEXT,
     validate: {
@@ -11,11 +18,18 @@ const Review = db.define('review', {
       }
     }
   },
-  score: {
-    type: Sequelize.FLOAT,
+  stars: {
+    type: Sequelize.INTEGER,
     validate: {
       min: 0,
       max: 5
+    }
+  },
+  date: {
+    type: Sequelize.DATEONLY,
+    allowNull: false,
+    validate: {
+      notEmpty: true
     }
   }
 })
