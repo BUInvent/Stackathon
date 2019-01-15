@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import Order from './order'
 import Address from './address'
 import classnames from 'classnames'
+import {fetchOrders} from '../store/order'
+import {fetchProducts} from '../store/product'
 
 class Account extends React.Component {
   constructor(props) {
@@ -13,6 +15,11 @@ class Account extends React.Component {
       activeTab: '1',
       userAddresses: this.props.userAddresses
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchOrders(this.props.user.id)
+    this.props.fetchProducts()
   }
 
   delete = id => {
@@ -28,7 +35,10 @@ class Account extends React.Component {
       })
     }
   }
+
   render() {
+    const {orders, products} = this.props
+
     return (
       <div>
         <Nav tabs>
@@ -60,8 +70,10 @@ class Account extends React.Component {
             <Row>
               <Col sm="12">
                 <ul>
-                  {this.props.orderedItems.map((item, index) => {
-                    return <Order key={index} {...item} />
+                  {orders.map(order => {
+                    return (
+                      <Order key={order.id} {...order} products={products} />
+                    )
                   })}
                 </ul>
               </Col>
@@ -85,9 +97,18 @@ class Account extends React.Component {
 
 const mapState = state => {
   return {
-    orderedItems: state.account.orderedItems,
+    products: state.product.products,
+    orders: state.account.orders,
+    user: state.user,
     userAddresses: state.account.userAddresses
   }
 }
 
-export default connect(mapState)(Account)
+const mapDispatch = dispatch => {
+  return {
+    fetchOrders: userID => dispatch(fetchOrders(userID)),
+    fetchProducts: () => dispatch(fetchProducts())
+  }
+}
+
+export default connect(mapState, mapDispatch)(Account)
