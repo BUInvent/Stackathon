@@ -69,7 +69,6 @@ async function seed() {
     Order.create({
       destination: '123 Main St',
       contents: [{id: 1, quantity: 1}],
-      price: 10,
       userId: 1
     })
   ])
