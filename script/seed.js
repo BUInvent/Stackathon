@@ -52,16 +52,28 @@ async function seed() {
 
   const reviews = await Promise.all([
     Review.create({
+      title: 'Loved this product.',
       text: 'That was really...something',
-      score: 3,
+      stars: 3,
       userId: 2,
-      productId: 3
+      productId: 1,
+      date: new Date().toISOString().split('T')[0]
     }),
     Review.create({
-      text: "Yeah, that's haunted alright.",
-      score: 5,
+      title: 'Loved this product.',
+      text: 'awesomeness!!!!',
+      stars: 5,
       userId: 1,
-      productId: 1
+      productId: 2,
+      date: new Date().toISOString().split('T')[0]
+    }),
+    Review.create({
+      title: 'Loved this product.',
+      text: "Yeah, that's haunted alright.",
+      stars: 5,
+      userId: 1,
+      productId: 3,
+      date: new Date().toISOString().split('T')[0]
     })
   ])
 

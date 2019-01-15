@@ -4,40 +4,49 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 
 export default class Reviews extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {showReviewForm: false}
-    this.toggleReviewForm = this.toggleReviewForm.bind(this)
-  }
-  toggleReviewForm() {
+  state = {showReviewForm: false}
+
+  componentDidMount() {}
+
+  toggleReviewForm = () => {
     this.setState(prevState => ({
       showReviewForm: !prevState.showReviewForm
     }))
   }
+
   render() {
-    const {name, reviews, isLoggedIn} = this.props
+    const {title, reviews, user, productId} = this.props
     return (
-      <Container>
+      <Container className="mt-5">
         <Row>
           <Col>
-            <h1
+            <h2
               className="text-center"
               style={{fontFamily: 'Permanent Marker'}}
             >
-              Reviews for {name}
-            </h1>
+              Reviews for {title}
+            </h2>
           </Col>
         </Row>
         {reviews &&
-          reviews.map(review => <Review key={review.id} review={review} />)}
-        <Row className="mt-4">
+          reviews.map(review => (
+            <Review key={review.id} review={review} title={title} />
+          ))}
+        {this.state.showReviewForm && (
+          <ReviewForm
+            user={user}
+            productId={productId}
+            toggleReviewForm={this.toggleReviewForm}
+            update={this.componentDidMount}
+          />
+        )}
+        <Row className="mt-4 mb-4">
           <Col>
-            {isLoggedIn && (
+            {user && (
               <Button onClick={this.toggleReviewForm}>Add A Review</Button>
             )}
           </Col>
         </Row>
-        {this.state.showReviewForm && <ReviewForm />}
       </Container>
     )
   }
