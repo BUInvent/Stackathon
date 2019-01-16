@@ -84,10 +84,10 @@ class ReviewForm extends React.Component {
   }
 }
 
-const mapStatetoProps = state => ({
-  user: state.user,
-  products: state.product.products
-})
+// const mapStatetoProps = state => ({
+//   user: state.user,
+//   products: state.product.products
+// })
 
 const mapDispatchToProps = dispatch => ({
   createReview: review => dispatch(createReview(review))

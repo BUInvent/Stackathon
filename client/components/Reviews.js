@@ -6,7 +6,9 @@ import ReviewForm from './ReviewForm'
 export default class Reviews extends Component {
   state = {showReviewForm: false}
 
-  componentDidMount() {}
+  rerenderMe = () => {
+    this.forceUpdate()
+  }
 
   toggleReviewForm = () => {
     this.setState(prevState => ({
@@ -37,12 +39,11 @@ export default class Reviews extends Component {
             user={user}
             productId={productId}
             toggleReviewForm={this.toggleReviewForm}
-            update={this.componentDidMount}
           />
         )}
         <Row className="mt-4 mb-4">
           <Col>
-            {user && (
+            {user.email && (
               <Button onClick={this.toggleReviewForm}>Add A Review</Button>
             )}
           </Col>
