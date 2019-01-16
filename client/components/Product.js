@@ -115,13 +115,6 @@ class Product extends Component {
                 </Button>
               </Col>
             </Row>
-            {cart && (
-              <Row className="mt-4">
-                <Col>
-                  <h6>This item has been added to your cart</h6>
-                </Col>
-              </Row>
-            )}
           </Container>
           {this.props.reviews && (
             <Reviews
