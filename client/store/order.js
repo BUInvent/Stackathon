@@ -51,6 +51,7 @@ export const getCart = id => async dispatch => {
 
 export const orderUpdate = (id, orderinfo) => async dispatch => {
   // id = state.order.order.id / orderinfo = {userId, DONTNEEDdestination, [{productId, qty}]}
+  console.log(id, orderinfo)
   const updatedOrder = await axios.put(`/api/orders/${id}`, orderinfo)
   dispatch(updateOrder(updatedOrder.data))
 }
@@ -72,7 +73,6 @@ export default function(
         order: action.order || state.order
       }
     case UPDATE_ORDER:
-      console.log(action.order)
       const newOrders = state.orders.map(order => {
         if (order.id !== action.order.id) {
           return order

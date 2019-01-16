@@ -33,13 +33,18 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:orderid', async (req, res, next) => {
   try {
-    const orderToUpdate = await Order.findOrCreate({
-      where: {
-        id: req.params.orderid
-      }
-    })
-    const updatedOrder = await orderToUpdate[0].update(req.body)
-    res.json(updatedOrder)
+    if (req.params.orderid !== 'undefined') {
+      const orderToUpdate = await Order.findOrCreate({
+        where: {
+          id: req.params.orderid
+        }
+      })
+      const updatedOrder = await orderToUpdate[0].update(req.body)
+      res.json(updatedOrder)
+    } else {
+      const updatedOrder = await Order.create(req.body)
+      res.json(updatedOrder)
+    }
   } catch (err) {
     next(err)
   }
