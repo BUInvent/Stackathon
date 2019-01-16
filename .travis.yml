@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "supernatural-store-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: supernatural-store # see README
+  api_key:
+    secure: 'JFFLAqZcVVB2qpuVAaNI/b652kBtcfPeaYM8fysg4O1YksY1C0hd5moEU4oXrJjkrUb4xJONJXMC1RczR5VwHBxyTFoIen9+DyjlKwIZBHU2BpCWGUbv4OXXzWRnFRLChaa/z1KvIwb158vl04x0iP/LgctaN4bfjp8igMuQ6ie5yjLwo2QXCoNMk4L0zIqMEVic/roP5pwVo3AGreHfXLbl9wBFi3HVcCCkDifcMzYtly9NNLAw1d/LZHlwNhITTPUpYP5t0AWNNbPc0L3K0J5pM15SMQzHZ2XzxRgsRMutMAwFRQrBL87tRveG6BncSPWFlTQE21FPND4Fbdl6rmHR7F53GfCKHM0QUHT2tlSQ+BAXcxYFQbApjyUTjsbuxxP2PSTwu46XiMffEzzGWaI5w+UAnCRC7m/9a7nIVqAdRp3X6g1kVCW0slen4Rowj1tAyyKF16BwCZOLl15yrnFjd4ApGPFBYPjEksKoqLEDl+REk/cbgL3lIhwfrDGZWLkxeH7m9VZAjSrW/rwmmSJ3n+2ySq8t89Ggs0A+JDNgvkBl+Zq6uE/Iptzq/Jdf/j9XyMTNhKA2t3qAoYS8pRH0g2dCMU6G3lfhYXd5hP3yxTDs56C5f0G0/XknitqJlxSkFz+qmKpaP9Bo+XDLulqMUUk4lEF0DFFqEXMWfh0=' # see README
