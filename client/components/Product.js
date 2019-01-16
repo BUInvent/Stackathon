@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Container, Row, Col, Button} from 'reactstrap'
 import {connect} from 'react-redux'
-import {pickProduct} from '../store/product'
+import {pickProduct, fetchProducts} from '../store/product'
+import {getCart, orderUpdate} from '../store/order'
 import Reviews from './Reviews'
 
 const cart = true
@@ -10,6 +11,48 @@ class Product extends Component {
   componentDidMount = () => {
     this.props.pickProduct(this.props.match.params.id)
   }
+
+  componentDidUpdate = () => {
+    if (this.props.user.id && !this.props.cartId) {
+      this.props.getCart(this.props.user.id)
+    }
+  }
+
+  handleClick = evt => {
+    let inCart = false
+    let newContents = []
+    if (this.props.cartItems) {
+      this.props.cartItems.map(item => {
+        if (item.id === Number(evt.target.id)) {
+          inCart = true
+        }
+      })
+    }
+    if (!inCart && this.props.cartItems) {
+      const newItem = {id: Number(evt.target.id), quantity: 1}
+      newContents = this.props.cartItems
+      newContents.push(newItem)
+    } else if (!inCart) {
+      const newItem = {id: Number(evt.target.id), quantity: 1}
+      newContents = [newItem]
+    } else {
+      newContents = this.props.cartItems.map(item => {
+        if (item.id === Number(evt.target.id)) {
+          return {
+            id: item.id,
+            quantity: item.quantity + 1
+          }
+        } else {
+          return item
+        }
+      })
+    }
+    const updatedOrder = {contents: newContents}
+    this.props.orderUpdate(this.props.cartId, updatedOrder)
+    this.props.getCart(this.props.user.id)
+    this.props.fetchProducts()
+  }
+
   render() {
     const {
       imgURL,
@@ -67,7 +110,7 @@ class Product extends Component {
             </Row>
             <Row className="mt-2">
               <Col>
-                <Button /* onClick="THUNK: Post request to session.cart" */>
+                <Button id={id} onClick={this.handleClick}>
                   Add to Cart
                 </Button>
               </Col>
@@ -97,11 +140,16 @@ class Product extends Component {
 const mapStatetoProps = state => ({
   user: state.user,
   product: state.product.selectedProduct[0],
-  reviews: state.product.selectedProduct[1]
+  reviews: state.product.selectedProduct[1],
+  cartId: state.order.order.id,
+  cartItems: state.order.order.contents
 })
 
 const mapDispatchToProps = dispatch => ({
-  pickProduct: id => dispatch(pickProduct(id))
+  pickProduct: id => dispatch(pickProduct(id)),
+  getCart: id => dispatch(getCart(id)),
+  orderUpdate: (id, order) => dispatch(orderUpdate(id, order)),
+  fetchProducts: () => dispatch(fetchProducts())
 })
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Product)

@@ -27,11 +27,7 @@ const CartItem = props => {
                 <p>${product.price}</p>
               </Col>
               <Col sm="2">
-                <Button
-                  close
-                  onClick={props.clickHandler}
-                  id={product.id - 1}
-                />
+                <Button close onClick={props.clickHandler} id={product.id} />
                 <Form>
                   <Label for="quantity">Quantity</Label>
                   <Input
@@ -44,7 +40,7 @@ const CartItem = props => {
                   <Button
                     type="submit"
                     onClick={props.submitHandler}
-                    id={product.id - 1}
+                    id={product.id}
                   >
                     Submit
                   </Button>

@@ -10,19 +10,36 @@ class Cart extends Component {
     super()
     this.state = {cartprice: 0}
   }
+
+  componentDidMount = () => {
+    this.props.fetchProducts()
+    this.forceUpdate()
+  }
+
   componentDidUpdate() {
-    if (this.props.products.length < 1) this.props.fetchProducts()
     if (this.props.user.id && !this.props.cartItems) {
       this.props.getCart(this.props.user.id)
+    }
+    if (this.props.cartItems) {
+      const newPrices = this.props.cartItems.map(item => {
+        return (
+          item.quantity *
+          this.props.products.find(product => {
+            return product.id === item.id
+          }).price
+        )
+      })
+      const newCartPrice = newPrices.reduce((acc, curr) => acc + curr, 0)
+      if (newCartPrice !== this.state.cartprice) {
+        this.setState({cartprice: newCartPrice})
+      }
     }
   }
 
   clickHandler = evt => {
-    const newContents = this.props.cartItems.map(item => {
-      if (item.id !== Number(evt.target.parentNode.id)) {
-        return item
-      }
-    })
+    const newContents = this.props.cartItems.filter(
+      item => item.id !== Number(evt.target.parentNode.id)
+    )
     const updatedOrder = {
       contents: newContents
     }
@@ -32,7 +49,7 @@ class Cart extends Component {
   submitHandler = evt => {
     evt.preventDefault()
     const newContents = this.props.cartItems.map(item => {
-      if (item.id === Number(evt.target.id + 1)) {
+      if (item.id === Number(evt.target.id)) {
         return {
           id: item.id,
           quantity: evt.target.previousSibling.value
@@ -71,7 +88,9 @@ class Cart extends Component {
                   return (
                     <CartItem
                       key={item.id}
-                      product={this.props.products[item.id - 1]}
+                      product={this.props.products.find(product => {
+                        return product.id === item.id
+                      })}
                       quantity={item.quantity}
                       submitHandler={this.submitHandler}
                       clickHandler={this.clickHandler}
