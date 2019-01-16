@@ -123,12 +123,14 @@ class Product extends Component {
               </Row>
             )}
           </Container>
-          <Reviews
-            reviews={this.props.reviews}
-            title={title}
-            productId={id}
-            user={this.props.user}
-          />
+          {this.props.reviews && (
+            <Reviews
+              reviews={this.props.reviews}
+              title={title}
+              productId={id}
+              user={this.props.user}
+            />
+          )}
         </>
       )
     )

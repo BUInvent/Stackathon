@@ -14,20 +14,19 @@ const Review = ({review}) => {
       </Row>
       <Row className="mt-2">
         <Col sm="4">
-          <Link to={`/users/${user.id}`}>
-            <h6>{user.email}</h6>
-          </Link>
-        </Col>
-        <Col sm="4">
           <h6>{title}</h6>
-        </Col>
-        <Col sm="4">
-          <h6>{date}</h6>
         </Col>
       </Row>
       <Row className="mt-2">
         <Col>
           <p>{text}</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h6>
+            {user.email} <br /> {date}
+          </h6>
         </Col>
       </Row>
     </React.Fragment>
