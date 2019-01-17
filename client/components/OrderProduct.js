@@ -1,18 +1,5 @@
 import React from 'react'
 
-class OrderProduct extends React.Component {
-  render() {
-    const {title, description, quantity, price} = this.props
-
-    return (
-      <div>
-        <h2>Title: {title}</h2>
-        <p>Description: {description}</p>
-        <p>quantity: {quantity}</p>
-        <p>Price: ${price}</p>
-      </div>
-    )
-  }
+export const Order = () => {
+  return <h1>Workout History goes here</h1>
 }
-
-export default OrderProduct

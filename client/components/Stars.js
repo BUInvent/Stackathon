@@ -1,9 +1,5 @@
 import React from 'react'
 
-const Stars = ({stars}) => {
-  const starsJoined = Array(stars)
-    .fill('★')
-    .join(' ')
-  return <div>{starsJoined}</div>
+export const Stars = () => {
+  return <h1>Workout History goes here</h1>
 }
-export default Stars

@@ -1,12 +1,5 @@
 import React from 'react'
-import Products from './Products'
 
-const Unearthly = () => {
-  return (
-    <>
-      <Products category="unearthly" />
-    </>
-  )
+export const Unearthly = () => {
+  return <h1>Workout History goes here</h1>
 }
-
-export default Unearthly
