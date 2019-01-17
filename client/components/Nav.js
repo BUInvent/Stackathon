@@ -1,15 +1,5 @@
 import React from 'react'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap'
+import {Collapse, Navbar, NavbarToggler, Nav, NavItem} from 'reactstrap'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -34,7 +24,7 @@ class NavBar extends React.Component {
             style={{fontFamily: 'Permanent Marker'}}
             to="/"
           >
-            Supernatural Store
+            Jurassic Gains
           </Link>
 
           <NavbarToggler onClick={this.toggle} />
@@ -43,25 +33,17 @@ class NavBar extends React.Component {
               <NavItem>
                 <Link
                   className="nav-link text-dark font-weight-bold"
-                  to="/magic/"
+                  to="/history/"
                 >
-                  Magic
+                  History
                 </Link>
               </NavItem>
               <NavItem>
                 <Link
                   className="nav-link text-dark font-weight-bold"
-                  to="/monsters/"
+                  to="/routines/"
                 >
-                  Monsters
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link
-                  className="nav-link text-dark font-weight-bold"
-                  to="/unearthly/"
-                >
-                  Unearthly
+                  Routines
                 </Link>
               </NavItem>
               <NavItem>
@@ -79,38 +61,6 @@ class NavBar extends React.Component {
                     Account
                   </Link>
                 </NavItem>
-              )}
-              {!this.props.admin ? (
-                <NavItem>
-                  <Link className="btn btn-dark" to="/cart/">
-                    Cart
-                  </Link>
-                </NavItem>
-              ) : (
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle
-                    className="text-dark font-weight-bold"
-                    nav
-                    caret
-                  >
-                    Panels
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <Link
-                      className="dropdown-item nav-link text-dark font-weight-bold"
-                      to="/admin/users"
-                    >
-                      Users
-                    </Link>
-                    <DropdownItem divider />
-                    <Link
-                      className="dropdown-item nav-link text-dark font-weight-bold"
-                      to="/admin/orders"
-                    >
-                      Orders
-                    </Link>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
               )}
             </Nav>
           </Collapse>

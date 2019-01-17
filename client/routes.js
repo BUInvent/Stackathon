@@ -13,6 +13,8 @@ import {
   Shawn,
   NewProduct,
   Magic,
+  History,
+  Routines,
   Monsters,
   Unearthly,
   Product
@@ -33,6 +35,8 @@ class Routes extends Component {
         <Route exact path="/" component={Home} />
         <Route path="/product/:id" component={Product} />
         <Route path="/magic" component={Magic} />
+        <Route path="/history" component={History} />
+        <Route path="/routines" component={Routines} />
         <Route path="/monsters" component={Monsters} />
         <Route path="/unearthly" component={Unearthly} />
         <Route path="/login" component={Login} />
