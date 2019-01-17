@@ -1,16 +1,19 @@
 import React from 'react'
-import {Button} from 'reactstrap'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
+import Button from '@material-ui/core/Button'
 
 const Routines = () => {
   return (
     <center>
       <h1>Routines</h1>
-      <Button color="primary" sm={5} block>
-        Routine 1
-      </Button>
-      <Button color="primary" size="lg" block>
-        Routine 2
-      </Button>
+      <Button className="col-sm-6 offset-sm-3">Routine 1</Button>
+      <br />
+      <Button className="col-sm-6 offset-sm-3">Routine 2</Button>
+      <br />
+      <Fab color="primary" aria-label="Add">
+        <AddIcon />
+      </Fab>
     </center>
   )
 }
