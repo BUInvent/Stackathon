@@ -55,13 +55,6 @@ class NavBar extends React.Component {
                   {this.props.isLoggedIn ? 'Logout' : 'Login'}
                 </Link>
               </NavItem>
-              {this.props.isLoggedIn && (
-                <NavItem>
-                  <Link className="btn btn-dark" to="/account/">
-                    Account
-                  </Link>
-                </NavItem>
-              )}
             </Nav>
           </Collapse>
         </Navbar>
