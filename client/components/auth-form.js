@@ -12,6 +12,10 @@ const AuthForm = props => {
 
   return (
     <div>
+      <h1 className="col-sm-6 offset-sm-3">
+        <center>{displayName}</center>
+      </h1>
+
       <Form onSubmit={handleSubmit} name={name}>
         <FormGroup className="col-sm-6 offset-sm-3">
           <Input
