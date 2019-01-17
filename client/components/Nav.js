@@ -70,7 +70,7 @@ class NavBar extends React.Component {
                   to={this.props.isLoggedIn ? '/' : '/login'}
                   onClick={this.props.handleClick}
                 >
-                  {this.props.isLoggedIn ? 'Logout' : 'SignIn/Up'}
+                  {this.props.isLoggedIn ? 'Logout' : 'Login'}
                 </Link>
               </NavItem>
               {this.props.isLoggedIn && (

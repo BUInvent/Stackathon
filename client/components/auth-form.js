@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Button, Form, FormGroup, Input, FormText} from 'reactstrap'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -12,9 +13,20 @@ const AuthForm = props => {
 
   return (
     <div>
-      <h1 className="col-sm-6 offset-sm-3">
+      <h1>
         <center>{displayName}</center>
       </h1>
+
+      <p>
+        <center>
+          {displayName} or{' '}
+          {displayName === 'Sign Up' ? (
+            <Link to="/login">Login</Link>
+          ) : (
+            <Link to="/signup">Sign Up</Link>
+          )}
+        </center>
+      </p>
 
       <Form onSubmit={handleSubmit} name={name}>
         <FormGroup className="col-sm-6 offset-sm-3">
