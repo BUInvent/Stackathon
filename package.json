@@ -1,7 +1,7 @@
 {
-  "name": "supernatural-store",
+  "name": "Jurassic_Gains",
   "version": "1.0.0",
-  "description": "Online purveyor of supernatural goods and services",
+  "description": "Workout tracker to help you get swole!",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -34,8 +34,7 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
-  "license": "MIT",
+  "author": "Jason",
   "dependencies": {
     "axios": "^0.15.3",
     "compression": "^1.7.3",

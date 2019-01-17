@@ -14,14 +14,14 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "supernatural-store-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "jgains-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-before_deploy:
-  - npm run build-client # make the bundle
-  - rm -rf node_modules # omit from the tarball, since we skip cleanup
-deploy:
-  skip_cleanup: true # prevents travis from deleting the build
-  provider: heroku
-  app: supernatural-store # see README
-  api_key:
-    secure: 'fucIfXnHfG/eopl45sQC+lOhlKPWOOPWmzW71I4C4Qc7ZRYL6/lb/tiITNeBq0EkghDMd9OwIH1SpXBR6llL/OuX7xKMmB36/KTRolTIJ5+iIGUn7dtElQJsoHEs4+4zQIRDgYIl6Bro+kKaHCawwLafgizwN6smik1fRO4zgagdzKtzI25cLswuZxuinw5de01R72JX5ZQcv1zV3GvS9wUBt6/wuOoHfkpjBcK0aTnMfAUBwxdiss6/LlJ4d9lpAq6NurNDIgiEKxndrG2U36PyyjZytFfUzhJ1FdT8TyiwAqO9oRhShGxoWOqeoHYNQKEAfb6Iqp6Md+8KRdeixx/HjIpZzn1PByvvS9VluJNRqgoBXDu9XgkdY7CgPZzn1caxzVy8Zyd+q/dnpTQOAuxhiPB912fTrp7t00yxwWVY9bP020XD65mS3C7QINEd0u6h3DQgQwUPnB80aby94ax6ikdRiAA/DEMHSO+xmzeTybYmU54tWuajGjooDu5N2IPRqeg8a6PpR0CVdFvxvv3VzDBKMHQTng1iIRuxR6Eoa8ivPVQo8kq1U3VyEnMcZOO66Yqfqy/jlHhtxa87JYOB/HFHBFx/UhwYN6UdmE8JxiJIsp5IhzLEmLYfQqFdq7j2MiR1lBsy0JsLJIttOXv8NHWy2qYjpZksmXE6ECo='
+# before_deploy:
+#   - npm run build-client # make the bundle
+#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
+# deploy:
+#   skip_cleanup: true # prevents travis from deleting the build
+#   provider: heroku
+#   app: jgains # see README
+#   api_key:
+#     secure: 'fucIfXnHfG/eopl45sQC+lOhlKPWOOPWmzW71I4C4Qc7ZRYL6/lb/tiITNeBq0EkghDMd9OwIH1SpXBR6llL/OuX7xKMmB36/KTRolTIJ5+iIGUn7dtElQJsoHEs4+4zQIRDgYIl6Bro+kKaHCawwLafgizwN6smik1fRO4zgagdzKtzI25cLswuZxuinw5de01R72JX5ZQcv1zV3GvS9wUBt6/wuOoHfkpjBcK0aTnMfAUBwxdiss6/LlJ4d9lpAq6NurNDIgiEKxndrG2U36PyyjZytFfUzhJ1FdT8TyiwAqO9oRhShGxoWOqeoHYNQKEAfb6Iqp6Md+8KRdeixx/HjIpZzn1PByvvS9VluJNRqgoBXDu9XgkdY7CgPZzn1caxzVy8Zyd+q/dnpTQOAuxhiPB912fTrp7t00yxwWVY9bP020XD65mS3C7QINEd0u6h3DQgQwUPnB80aby94ax6ikdRiAA/DEMHSO+xmzeTybYmU54tWuajGjooDu5N2IPRqeg8a6PpR0CVdFvxvv3VzDBKMHQTng1iIRuxR6Eoa8ivPVQo8kq1U3VyEnMcZOO66Yqfqy/jlHhtxa87JYOB/HFHBFx/UhwYN6UdmE8JxiJIsp5IhzLEmLYfQqFdq7j2MiR1lBsy0JsLJIttOXv8NHWy2qYjpZksmXE6ECo='
