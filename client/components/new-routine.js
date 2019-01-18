@@ -7,7 +7,21 @@ import {Button, Form, FormGroup, Input, Row, Col} from 'reactstrap'
 class NewRoutine extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {exercise: ['Bench Press', 'Bench Press']}
+    this.state = {exercise: ['Bench Press', 'Bicep Curls'], inputExercise: ''}
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  addExercise = event => {
+    event.preventDefault()
+    const newExercise = this.state.inputExercise
+    this.setState(previousState => ({
+      exercise: [...previousState.exercise, newExercise]
+    }))
   }
 
   render() {
@@ -17,7 +31,7 @@ class NewRoutine extends React.Component {
           <center>Create New Routine</center>
         </h1>
 
-        <Form onSubmit={console.log('hello')}>
+        <Form onSubmit={this.addExercise}>
           <FormGroup className="col-sm-6 offset-sm-3">
             <Input
               type="text"
@@ -29,10 +43,12 @@ class NewRoutine extends React.Component {
 
           <FormGroup className="col-sm-6 offset-sm-3">
             <Input
+              onChange={this.handleChange}
               type="text"
-              name="Exercise"
-              id="exerciseInput"
+              name="inputExercise"
+              id="inputExercise"
               placeholder="Exercise"
+              value={this.state.inputExercise}
             />
           </FormGroup>
 
@@ -50,22 +66,37 @@ class NewRoutine extends React.Component {
           </FormGroup>
         </Form>
 
-        <Row form>
-          <Col className="col-sm-4" />
-          <Col>
-            <FormGroup>
-              <Button type="submit" color="warning">
-                X
-              </Button>
-            </FormGroup>
-          </Col>
+        <ul>
+          {this.state.exercise.map(exercise => {
+            return (
+              <Row key={exercise.id}>
+                <Col className="col-sm-4" />
+                <Col>
+                  <FormGroup>
+                    <Button type="submit" color="warning">
+                      X
+                    </Button>
+                  </FormGroup>
+                </Col>
 
-          <Col>
-            <FormGroup>
-              <p>Bench Press</p>
-            </FormGroup>
-          </Col>
-        </Row>
+                <Col>
+                  <FormGroup>
+                    <p>{exercise}</p>
+                  </FormGroup>
+                </Col>
+              </Row>
+            )
+          })}
+        </ul>
+
+        <Button
+          className="col-sm-6 offset-sm-3"
+          type="submit"
+          color="primary"
+          block
+        >
+          Create Routine
+        </Button>
       </div>
     )
   }
