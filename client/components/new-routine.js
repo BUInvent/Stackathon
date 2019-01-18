@@ -7,7 +7,7 @@ import {Button, Form, FormGroup, Input, Row, Col} from 'reactstrap'
 class NewRoutine extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {exercise: ['Bench Press', 'Bicep Curls'], inputExercise: ''}
+    this.state = {exercise: [], inputExercise: '', inputSets: 3, inputReps: 8}
   }
 
   handleChange = event => {
@@ -18,9 +18,23 @@ class NewRoutine extends React.Component {
 
   addExercise = event => {
     event.preventDefault()
-    const newExercise = this.state.inputExercise
+    const newExercise = {
+      name: this.state.inputExercise,
+      sets: this.state.inputSets,
+      reps: this.state.inputReps
+    }
+    if (this.state.exercise.includes(newExercise)) {
+      return
+    }
     this.setState(previousState => ({
-      exercise: [...previousState.exercise, newExercise]
+      exercise: [...previousState.exercise, newExercise],
+      inputExercise: ''
+    }))
+  }
+
+  removeExercise = exerciseIn => {
+    this.setState(state => ({
+      exercise: state.exercise.filter(exercise => exercise !== exerciseIn)
     }))
   }
 
@@ -53,10 +67,20 @@ class NewRoutine extends React.Component {
           </FormGroup>
 
           <FormGroup className="col-sm-6 offset-sm-3">
-            <Input placeholder="Sets" type="number" step="1" />
+            <Input
+              placeholder="Sets"
+              type="number"
+              step="1"
+              value={this.state.inputSets}
+            />
           </FormGroup>
           <FormGroup className="col-sm-6 offset-sm-3">
-            <Input placeholder="Reps" type="number" step="1" />
+            <Input
+              placeholder="Reps"
+              type="number"
+              step="1"
+              value={this.state.inputReps}
+            />
           </FormGroup>
 
           <FormGroup className="col-sm-6 offset-sm-3">
@@ -73,7 +97,10 @@ class NewRoutine extends React.Component {
                 <Col className="col-sm-4" />
                 <Col>
                   <FormGroup>
-                    <Button type="submit" color="warning">
+                    <Button
+                      onClick={() => this.removeExercise(exercise)}
+                      color="warning"
+                    >
                       X
                     </Button>
                   </FormGroup>
@@ -81,7 +108,7 @@ class NewRoutine extends React.Component {
 
                 <Col>
                   <FormGroup>
-                    <p>{exercise}</p>
+                    <p>{exercise.name}</p>
                   </FormGroup>
                 </Col>
               </Row>
