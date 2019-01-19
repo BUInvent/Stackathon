@@ -13,7 +13,8 @@ class NewRoutine extends React.Component {
       inputExercise: '',
       inputSets: 3,
       inputReps: 8,
-      userId: this.props.userId
+      showExercise: false,
+      inputTitle: ''
     }
   }
 
@@ -62,14 +63,38 @@ class NewRoutine extends React.Component {
 
           <FormGroup className="col-sm-6 offset-sm-3">
             <Input
+              onChange={this.handleChange}
               type="text"
-              name="Title"
-              id="titleInput"
+              name="inputTitle"
+              id="inputTitle"
               placeholder="Title"
+              value={this.state.inputTitle}
             />
           </FormGroup>
 
-          <Form onSubmit={this.addExercise}>
+          <FormGroup className="col-sm-6 offset-sm-3">
+            <Button
+              className="col-sm-6 offset-sm-3"
+              type="submit"
+              color="primary"
+              onClick={() => {
+                this.setState({showExercise: true})
+              }}
+              block
+            >
+              Create Routine
+            </Button>
+          </FormGroup>
+        </Form>
+
+        {this.state.showExercise ? (
+          <Form action="/api/exercises" method="post">
+            <Input
+              type="hidden"
+              id="routineName"
+              name="routineName"
+              value={this.state.inputTitle}
+            />
             <FormGroup className="col-sm-6 offset-sm-3">
               <Input
                 onChange={this.handleChange}
@@ -85,6 +110,7 @@ class NewRoutine extends React.Component {
               <Input
                 placeholder="Sets"
                 type="number"
+                name="inputSets"
                 step="1"
                 value={this.state.inputSets}
               />
@@ -92,6 +118,7 @@ class NewRoutine extends React.Component {
             <FormGroup className="col-sm-6 offset-sm-3">
               <Input
                 placeholder="Reps"
+                name="inputReps"
                 type="number"
                 step="1"
                 value={this.state.inputReps}
@@ -104,44 +131,33 @@ class NewRoutine extends React.Component {
               </Button>
             </FormGroup>
           </Form>
+        ) : null}
 
-          <ul>
-            {this.state.exercise.map(exercise => {
-              return (
-                <Row key={exercise.id}>
-                  <Col className="col-sm-4" />
-                  <Col>
-                    <FormGroup>
-                      <Button
-                        onClick={() => this.removeExercise(exercise)}
-                        color="warning"
-                      >
-                        X
-                      </Button>
-                    </FormGroup>
-                  </Col>
+        <ul>
+          {this.state.exercise.map(exercise => {
+            return (
+              <Row key={exercise.id}>
+                <Col className="col-sm-4" />
+                <Col>
+                  <FormGroup>
+                    <Button
+                      onClick={() => this.removeExercise(exercise)}
+                      color="warning"
+                    >
+                      X
+                    </Button>
+                  </FormGroup>
+                </Col>
 
-                  <Col>
-                    <FormGroup>
-                      <p>{exercise.name}</p>
-                    </FormGroup>
-                  </Col>
-                </Row>
-              )
-            })}
-          </ul>
-
-          <FormGroup className="col-sm-6 offset-sm-3">
-            <Button
-              className="col-sm-6 offset-sm-3"
-              type="submit"
-              color="primary"
-              block
-            >
-              Create Routine
-            </Button>
-          </FormGroup>
-        </Form>
+                <Col>
+                  <FormGroup>
+                    <p>{exercise.name}</p>
+                  </FormGroup>
+                </Col>
+              </Row>
+            )
+          })}
+        </ul>
       </div>
     )
   }

@@ -14,11 +14,11 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const routine = await Routine.create({
-      name: req.body.Title
+      name: req.body.inputTitle
     })
     const user = await User.findOne({where: {id: req.body.user}})
     await routine.setUser(user)
-    res.json(routine)
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }

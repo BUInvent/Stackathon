@@ -1,5 +1,6 @@
 const User = require('./user')
 const Routine = require('./routine')
+const Exercise = require('./exercise')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,20 +19,11 @@ const Routine = require('./routine')
 User.hasMany(Routine)
 Routine.belongsTo(User)
 
-// User.hasMany(Order)
-// Order.belongsTo(User)
-// //Order.hasMany(Product)
-// //Product.belongsToMany(Order, {through: 'OrderProduct'})
-// Review.belongsTo(User)
-// Review.belongsTo(Product)
-// User.hasMany(Review)
-// Product.hasMany(Review)
-// Product.belongsTo(Category)
-// Category.hasMany(Product)
-// Product.belongsToMany(Tag, {through: 'productTags'})
-// Tag.belongsToMany(Product, {through: 'productTags'})
+Routine.hasMany(Exercise)
+Exercise.belongsTo(Routine)
 
 module.exports = {
   User,
-  Routine
+  Routine,
+  Exercise
 }
