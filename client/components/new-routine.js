@@ -38,6 +38,7 @@ class NewRoutine extends React.Component {
       exercise: [...previousState.exercise, newExercise],
       inputExercise: ''
     }))
+    event.target.submit()
   }
 
   removeExercise = exerciseIn => {
@@ -49,6 +50,7 @@ class NewRoutine extends React.Component {
   showExercise = e => {
     e.preventDefault()
     this.setState({showExercise: true})
+    e.target.submit()
   }
 
   render() {
@@ -58,7 +60,7 @@ class NewRoutine extends React.Component {
           <center>Create New Routine</center>
         </h1>
 
-        <Form action="/api/routines" method="post">
+        <Form action="/api/routines" onSubmit={this.showExercise} method="post">
           <Input
             type="hidden"
             id="userID"
@@ -91,9 +93,13 @@ class NewRoutine extends React.Component {
           </FormGroup>
         </Form>
 
-        {!this.state.showExercise ? (
+        {this.state.showExercise ? (
           <div>
-            <Form action="/api/exercises" method="post">
+            <Form
+              action="/api/exercises"
+              onSubmit={this.addExercise}
+              method="post"
+            >
               <Input
                 type="hidden"
                 id="routineName"
@@ -133,12 +139,7 @@ class NewRoutine extends React.Component {
               </FormGroup>
 
               <FormGroup className="col-sm-6 offset-sm-3">
-                <Button
-                  type="submit"
-                  color="primary"
-                  // onClick={this.addExercise}
-                  block
-                >
+                <Button type="submit" color="primary" block>
                   Add Exercise
                 </Button>
               </FormGroup>
@@ -146,7 +147,7 @@ class NewRoutine extends React.Component {
 
             <Form action="/routines">
               <Button color="primary" type="submit" block>
-                Go back to routines
+                Save and go back to routines
               </Button>
             </Form>
           </div>
