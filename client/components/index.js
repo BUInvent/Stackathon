@@ -5,6 +5,7 @@
  */
 
 export {default as WorkoutHistory} from './workout-history'
+export {default as Workout} from './workout'
 export {default as Routines} from './routines'
 export {default as Navbar} from './Nav'
 export {Login, Signup} from './auth-form'

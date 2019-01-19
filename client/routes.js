@@ -2,7 +2,14 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, Home, WorkoutHistory, Routines} from './components'
+import {
+  Login,
+  Signup,
+  Home,
+  WorkoutHistory,
+  Routines,
+  Workout
+} from './components'
 import {me} from './store'
 import NewRoutine from './components/new-routine'
 
@@ -19,6 +26,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
         <Route path="/workout-history" component={WorkoutHistory} />
+        <Route path="/workout" component={Workout} />
         <Route path="/routines" component={Routines} />
         <Route path="/new-routine" component={NewRoutine} />
         <Route path="/login" component={Login} />

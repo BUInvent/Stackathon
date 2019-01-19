@@ -27,8 +27,6 @@ class Routines extends React.Component {
     return (
       <center>
         <h1>Routines</h1>
-        {console.log('user = ', this.props.userId)}
-        {console.log('state = ', this.state)}
 
         {this.state.routines.map(routine => {
           return (
