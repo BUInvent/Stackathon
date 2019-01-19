@@ -53,7 +53,7 @@ class NewRoutine extends React.Component {
           <center>Create New Routine</center>
         </h1>
 
-        <Form action="/api/routines" method="post">
+        <Form>
           <Input
             type="hidden"
             id="userID"
@@ -110,6 +110,7 @@ class NewRoutine extends React.Component {
 
             <FormGroup className="col-sm-6 offset-sm-3">
               <Input
+                onChange={this.handleChange}
                 placeholder="Sets"
                 type="number"
                 name="inputSets"
@@ -119,6 +120,7 @@ class NewRoutine extends React.Component {
             </FormGroup>
             <FormGroup className="col-sm-6 offset-sm-3">
               <Input
+                onChange={this.handleChange}
                 placeholder="Reps"
                 name="inputReps"
                 type="number"
@@ -128,7 +130,12 @@ class NewRoutine extends React.Component {
             </FormGroup>
 
             <FormGroup className="col-sm-6 offset-sm-3">
-              <Button type="submit" color="primary" block>
+              <Button
+                type="submit"
+                color="primary"
+                onClick={this.addExercise}
+                block
+              >
                 Add Exercise
               </Button>
             </FormGroup>

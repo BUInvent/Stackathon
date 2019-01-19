@@ -12,7 +12,6 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  console.log('routine name = ', req.body)
   try {
     const exercise = await Exercise.create({
       name: req.body.inputExercise,
@@ -21,8 +20,7 @@ router.post('/', async (req, res, next) => {
     })
     const routine = await Routine.findOne({where: {name: req.body.routineName}})
     await exercise.setRoutine(routine)
-    // res.sendStatus(204)
-    res.json(exercise)
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }

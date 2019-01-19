@@ -18,6 +18,7 @@ router.post('/', async (req, res, next) => {
     })
     const user = await User.findOne({where: {id: req.body.user}})
     await routine.setUser(user)
+    // res.json(routine)
     res.sendStatus(204)
   } catch (err) {
     next(err)
