@@ -68,6 +68,7 @@ class NewRoutine extends React.Component {
               name="inputTitle"
               id="inputTitle"
               placeholder="Title"
+              disabled={this.state.showExercise}
               value={this.state.inputTitle}
             />
           </FormGroup>
@@ -77,6 +78,7 @@ class NewRoutine extends React.Component {
               className="col-sm-6 offset-sm-3"
               type="submit"
               color="primary"
+              disabled={this.state.showExercise}
               onClick={() => {
                 this.setState({showExercise: true})
               }}
