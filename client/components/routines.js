@@ -30,9 +30,14 @@ class Routines extends React.Component {
 
         {this.state.routines.map(routine => {
           return (
-            <Button key={routine.id} className="col-sm-7">
-              {routine.name}
-            </Button>
+            <form
+              key={routine.id}
+              action={`/workout/${routine.name}/${routine.id}`}
+            >
+              <Button className="col-sm-7" type="submit">
+                {routine.name}
+              </Button>
+            </form>
           )
         })}
 

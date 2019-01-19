@@ -26,7 +26,11 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
         <Route path="/workout-history" component={WorkoutHistory} />
-        <Route path="/workout" component={Workout} />
+        <Route
+          path="/workout/:routineName/:routineId"
+          component={Workout}
+          name="workout"
+        />
         <Route path="/routines" component={Routines} />
         <Route path="/new-routine" component={NewRoutine} />
         <Route path="/login" component={Login} />
