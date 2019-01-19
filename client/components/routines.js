@@ -2,10 +2,11 @@ import React from 'react'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import Button from '@material-ui/core/Button'
+import {connect} from 'react-redux'
 
 class Routines extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       routines: []
     }
@@ -26,6 +27,8 @@ class Routines extends React.Component {
     return (
       <center>
         <h1>Routines</h1>
+        {console.log('user = ', this.props.userId)}
+        {console.log('state = ', this.state)}
 
         {this.state.routines.map(routine => {
           return (
@@ -45,4 +48,10 @@ class Routines extends React.Component {
   }
 }
 
-export default Routines
+const mapState = state => {
+  return {
+    userId: state.user.id
+  }
+}
+
+export default connect(mapState, null)(Routines)
