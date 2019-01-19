@@ -11,6 +11,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const routines = await Routine.findAll({
+      where: {userId: req.params.userId}
+    })
+    res.json(routines)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const routine = await Routine.create({
@@ -18,7 +29,6 @@ router.post('/', async (req, res, next) => {
     })
     const user = await User.findOne({where: {id: req.body.user}})
     await routine.setUser(user)
-    // res.json(routine)
     res.sendStatus(204)
   } catch (err) {
     next(err)
