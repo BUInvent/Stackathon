@@ -46,6 +46,11 @@ class NewRoutine extends React.Component {
     }))
   }
 
+  showExercise = e => {
+    e.preventDefault()
+    this.setState({showExercise: true})
+  }
+
   render() {
     return (
       <div>
@@ -53,7 +58,7 @@ class NewRoutine extends React.Component {
           <center>Create New Routine</center>
         </h1>
 
-        <Form>
+        <Form action="/api/routines" method="post">
           <Input
             type="hidden"
             id="userID"
@@ -79,9 +84,6 @@ class NewRoutine extends React.Component {
               type="submit"
               color="primary"
               disabled={this.state.showExercise}
-              onClick={() => {
-                this.setState({showExercise: true})
-              }}
               block
             >
               Create Routine
@@ -89,7 +91,7 @@ class NewRoutine extends React.Component {
           </FormGroup>
         </Form>
 
-        {this.state.showExercise ? (
+        {!this.state.showExercise ? (
           <Form action="/api/exercises" method="post">
             <Input
               type="hidden"
@@ -133,7 +135,7 @@ class NewRoutine extends React.Component {
               <Button
                 type="submit"
                 color="primary"
-                onClick={this.addExercise}
+                // onClick={this.addExercise}
                 block
               >
                 Add Exercise
