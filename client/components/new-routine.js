@@ -92,56 +92,64 @@ class NewRoutine extends React.Component {
         </Form>
 
         {!this.state.showExercise ? (
-          <Form action="/api/exercises" method="post">
-            <Input
-              type="hidden"
-              id="routineName"
-              name="routineName"
-              value={this.state.inputTitle}
-            />
-            <FormGroup className="col-sm-6 offset-sm-3">
+          <div>
+            <Form action="/api/exercises" method="post">
               <Input
-                onChange={this.handleChange}
-                type="text"
-                name="inputExercise"
-                id="inputExercise"
-                placeholder="Exercise"
-                value={this.state.inputExercise}
+                type="hidden"
+                id="routineName"
+                name="routineName"
+                value={this.state.inputTitle}
               />
-            </FormGroup>
+              <FormGroup className="col-sm-6 offset-sm-3">
+                <Input
+                  onChange={this.handleChange}
+                  type="text"
+                  name="inputExercise"
+                  id="inputExercise"
+                  placeholder="Exercise"
+                  value={this.state.inputExercise}
+                />
+              </FormGroup>
 
-            <FormGroup className="col-sm-6 offset-sm-3">
-              <Input
-                onChange={this.handleChange}
-                placeholder="Sets"
-                type="number"
-                name="inputSets"
-                step="1"
-                value={this.state.inputSets}
-              />
-            </FormGroup>
-            <FormGroup className="col-sm-6 offset-sm-3">
-              <Input
-                onChange={this.handleChange}
-                placeholder="Reps"
-                name="inputReps"
-                type="number"
-                step="1"
-                value={this.state.inputReps}
-              />
-            </FormGroup>
+              <FormGroup className="col-sm-6 offset-sm-3">
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="Sets"
+                  type="number"
+                  name="inputSets"
+                  step="1"
+                  value={this.state.inputSets}
+                />
+              </FormGroup>
+              <FormGroup className="col-sm-6 offset-sm-3">
+                <Input
+                  onChange={this.handleChange}
+                  placeholder="Reps"
+                  name="inputReps"
+                  type="number"
+                  step="1"
+                  value={this.state.inputReps}
+                />
+              </FormGroup>
 
-            <FormGroup className="col-sm-6 offset-sm-3">
-              <Button
-                type="submit"
-                color="primary"
-                // onClick={this.addExercise}
-                block
-              >
-                Add Exercise
+              <FormGroup className="col-sm-6 offset-sm-3">
+                <Button
+                  type="submit"
+                  color="primary"
+                  // onClick={this.addExercise}
+                  block
+                >
+                  Add Exercise
+                </Button>
+              </FormGroup>
+            </Form>
+
+            <Form action="/routines">
+              <Button color="primary" type="submit" block>
+                Go back to routines
               </Button>
-            </FormGroup>
-          </Form>
+            </Form>
+          </div>
         ) : null}
 
         <ul>
