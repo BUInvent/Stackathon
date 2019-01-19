@@ -11,9 +11,12 @@ const Routines = () => {
       <br />
       <Button className="col-sm-6 offset-sm-3">Routine 2</Button>
       <br />
-      <Fab color="primary" aria-label="Add">
-        <AddIcon />
-      </Fab>
+
+      <form action="/new-routine">
+        <Fab color="primary" type="submit" aria-label="Add">
+          <AddIcon />
+        </Fab>
+      </form>
     </center>
   )
 }
