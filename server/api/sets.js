@@ -1,29 +1,40 @@
 const router = require('express').Router()
-const { Exercise, Routine, Sets, WorkoutHistory, User } = require('../db/models')
+const {Exercise, Routine, Sets, WorkoutHistory, User} = require('../db/models')
 module.exports = router
 
 router.post('/:routineId/:userId', async (req, res, next) => {
+  try {
+    const workoutDate = await WorkoutHistory.create({
+      date: new Date()
+    })
+    const routine = await Routine.findOne({where: {id: req.params.routineId}})
+    const user = await User.findOne({where: {id: req.params.userId}})
+    await workoutDate.setRoutine(routine)
+    await workoutDate.setUser(user)
 
-    console.log('req 1 ', req.params)
-    console.log('req 2 ', req.body)
-    console.log('req 3 ', req.query)
+    let weightKeys = Object.keys(req.body).filter(function(k) {
+      return k.indexOf('weight') === 0
+    })
 
-    try {
-        const workoutDate = await WorkoutHistory.create({
-            date: new Date()
+    weightKeys.forEach(async function(key) {
+      if (!Array.isArray(req.body[key])) req.body[key] = [req.body[key]]
+
+      const exercise = await Exercise.findOne({
+        where: {id: Number(key.slice(-1))}
+      })
+
+      for (let i = 0; i < req.body[key].length; i++) {
+        const set = await Sets.create({
+          weight: req.body[key][i],
+          reps: req.body['reps exercise' + key.slice(-1)][i],
+          workouthistoryId: workoutDate.id
         })
-        const routine = await Routine.findOne({ where: { id: req.params.routineId } })
-        const user = await User.findOne({ where: { id: req.params.userId } })
-        await workoutDate.setRoutine(routine)
-        await workoutDate.setUser(user)
+        await set.setExercise(exercise)
+      }
+    })
 
-        for(let i = 0; i < (req.body.length/2); i++){
-            for(let j = 0; j < ())
-        }
-
-        // res.sendStatus(204)
-        res.json(workoutDate)
-    } catch (err) {
-        next(err)
-    }
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
 })

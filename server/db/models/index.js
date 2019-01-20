@@ -2,6 +2,7 @@ const User = require('./user')
 const Routine = require('./routine')
 const Exercise = require('./exercise')
 const WorkoutHistory = require('./workouthistory')
+const Sets = require('./sets')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -29,9 +30,16 @@ WorkoutHistory.belongsTo(User)
 Routine.hasMany(WorkoutHistory)
 WorkoutHistory.belongsTo(Routine)
 
+WorkoutHistory.hasMany(Sets)
+Sets.belongsTo(WorkoutHistory)
+
+Exercise.hasMany(Sets, {as: 'sets_pk'})
+Sets.belongsTo(Exercise)
+
 module.exports = {
   User,
   Routine,
   Exercise,
-  WorkoutHistory
+  WorkoutHistory,
+  Sets
 }
