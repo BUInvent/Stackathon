@@ -27,9 +27,9 @@ router.post('/:routineId/:userId', async (req, res, next) => {
       })
 
       for (let i = 0; i < req.body[key].length; i++) {
-        if (typeof req.body[key][i] !== 'number') weightIn = 0
+        if (req.body[key][i] === '') weightIn = 0
         else weightIn = req.body[key][i]
-        if (typeof req.body['reps exercise' + key.slice(-1)][i] !== 'number')
+        if (req.body['reps exercise' + key.slice(-1)][i] === '')
           repsIn = 0
         else repsIn = req.body['reps exercise' + key.slice(-1)][i]
 

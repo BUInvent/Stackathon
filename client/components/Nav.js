@@ -21,7 +21,7 @@ class NavBar extends React.Component {
         <Navbar color="danger" light expand="md">
           <Link
             className="font-weight-bolder navbar-brand"
-            style={{fontFamily: 'Permanent Marker'}}
+            // style={{fontFamily: 'Permanent Marker'}}
             to="/"
           >
             Jurassic Gains

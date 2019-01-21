@@ -1,7 +1,9 @@
 import React from 'react'
-import {Row, Form, FormGroup, Input, Col, Label} from 'reactstrap'
+import { Row, Form, FormGroup, Input, Col, Label } from 'reactstrap'
 import Button from '@material-ui/core/Button'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class Workout extends React.Component {
   constructor(props) {
@@ -15,17 +17,11 @@ class Workout extends React.Component {
     fetch(`/api/exercises/${this.props.match.params.routineId}`)
       .then(res => res.json())
       .then(out => {
-        this.setState({exercises: out})
+        this.setState({ exercises: out })
       })
       .catch(err => {
         throw err
       })
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault()
-    window.location.replace('/workout-history');
-    e.target.submit()
   }
 
   render() {
@@ -36,7 +32,7 @@ class Workout extends React.Component {
         <Form
           action={`/api/sets/${this.props.match.params.routineId}/${
             this.props.userId
-          }`}
+            }`}
           method="post"
           onSubmit={this.onSubmit}
         >
@@ -98,7 +94,6 @@ class Workout extends React.Component {
               </Row>
             )
           })}
-
           <Button color="primary" type="submit">
             Finish
           </Button>
