@@ -33,7 +33,7 @@ class NavBar extends React.Component {
               <NavItem>
                 <Link
                   className="nav-link text-dark font-weight-bold"
-                  to="/workout-history/"
+                  to={`/workout-history/${this.props.userId}`}
                 >
                   History
                 </Link>

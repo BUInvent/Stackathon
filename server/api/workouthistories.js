@@ -1,6 +1,6 @@
 
 const router = require('express').Router()
-const { WorkoutHistory } = require('../db/models')
+const { WorkoutHistory, Routine } = require('../db/models')
 module.exports = router
 
 router.get('/:userId', async (req, res, next) => {
@@ -8,20 +8,10 @@ router.get('/:userId', async (req, res, next) => {
         const workouts = await WorkoutHistory.findAll({
             where: {
                 userId: req.params.userId
-            }
+            }, include: [Routine]
         })
-        res.json(workouts)
-    } catch (err) {
-        next(err)
-    }
-})
 
-router.get('/:userId', async (req, res, next) => {
-    try {
-        const routines = await Routine.findAll({
-            where: { userId: req.params.userId }
-        })
-        res.json(routines)
+        res.json(workouts)
     } catch (err) {
         next(err)
     }

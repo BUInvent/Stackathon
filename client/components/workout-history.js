@@ -12,7 +12,7 @@ class WorkoutHistory extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/workouthistories/1')
+    fetch(`/api/workouthistories/${this.props.match.params.userId}`)
       .then(res => res.json())
       .then(out => {
         this.setState({ workouts: out })
@@ -30,7 +30,7 @@ class WorkoutHistory extends React.Component {
         {this.state.workouts.map(workout => {
           return (
             <Button key={workout.id} className="col-sm-7">
-              {workout.date}
+              {workout.routine.name} - {moment(workout.date).format('dddd, MMMM D, Y')}
             </Button>
           )
         })}

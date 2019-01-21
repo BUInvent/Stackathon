@@ -26,7 +26,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
-        <Route path="/workout-history" component={WorkoutHistory} />
+        <Route path="/workout-history/:userId?" component={WorkoutHistory} />
         <Route
           path="/workout/:routineName/:routineId"
           component={Workout}
