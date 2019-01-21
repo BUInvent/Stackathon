@@ -1,8 +1,8 @@
 import React from 'react'
-import {Collapse, Navbar, NavbarToggler, Nav, NavItem} from 'reactstrap'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { logout } from '../store'
 
 class NavBar extends React.Component {
   state = {
@@ -21,7 +21,6 @@ class NavBar extends React.Component {
         <Navbar color="danger" light expand="md">
           <Link
             className="font-weight-bolder navbar-brand"
-            // style={{fontFamily: 'Permanent Marker'}}
             to="/"
           >
             Jurassic Gains
@@ -30,23 +29,32 @@ class NavBar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link
-                  className="nav-link text-dark font-weight-bold"
-                  to={`/workout-history/${this.props.userId}`}
-                >
-                  History
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link
-                  className="nav-link text-dark font-weight-bold"
-                  to={`/routines/${this.props.userId}`}
-                >
-                  Routines
-                </Link>
-              </NavItem>
-              <NavItem>
+
+
+              {
+                (this.props.isLoggedIn) ? (
+                  <NavItem>
+                    <Link
+                      className="nav-link text-dark font-weight-bold"
+                      to={`/workout-history/${this.props.userId}`}>
+                      History
+                      </Link>
+                  </NavItem>
+                ) : null
+              }
+              {
+                (this.props.isLoggedIn) ? (
+                  <NavItem>
+                    <Link
+                      className="nav-link text-dark font-weight-bold"
+                      to={`/routines/${this.props.userId}`}>
+                      Routines
+                      </Link>
+                  </NavItem>
+                ) : null
+              }
+
+              < NavItem >
                 <Link
                   className="btn btn-dark"
                   to={this.props.isLoggedIn ? '/' : '/login'}
