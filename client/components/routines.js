@@ -13,7 +13,7 @@ class Routines extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/routines/1')
+    fetch(`/api/routines/${this.props.match.params.userId}`)
       .then(res => res.json())
       .then(out => {
         this.setState({routines: out})

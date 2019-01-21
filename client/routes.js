@@ -8,7 +8,8 @@ import {
   Home,
   WorkoutHistory,
   Routines,
-  Workout
+  Workout,
+  WorkoutDetails
 } from './components'
 import {me} from './store'
 import NewRoutine from './components/new-routine'
@@ -31,7 +32,8 @@ class Routes extends Component {
           component={Workout}
           name="workout"
         />
-        <Route path="/routines" component={Routines} />
+        <Route path="/workout-details" component={WorkoutDetails} />
+        <Route path="/routines/:userId?" component={Routines} />
         <Route path="/new-routine" component={NewRoutine} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

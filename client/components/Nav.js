@@ -41,7 +41,7 @@ class NavBar extends React.Component {
               <NavItem>
                 <Link
                   className="nav-link text-dark font-weight-bold"
-                  to="/routines/"
+                  to={`/routines/${this.props.userId}`}
                 >
                   Routines
                 </Link>
@@ -65,7 +65,8 @@ class NavBar extends React.Component {
 
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 
