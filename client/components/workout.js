@@ -22,6 +22,12 @@ class Workout extends React.Component {
       })
   }
 
+  onSubmit = (e) => {
+    e.preventDefault()
+    window.location.replace('/workout-history');
+    e.target.submit()
+  }
+
   render() {
     return (
       <center>
@@ -32,6 +38,7 @@ class Workout extends React.Component {
             this.props.userId
           }`}
           method="post"
+          onSubmit={this.onSubmit}
         >
           {this.state.exercises.map(exercise => {
             let setNum = []
