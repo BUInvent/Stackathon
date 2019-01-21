@@ -1,45 +1,66 @@
-
-
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { Row, Col } from 'reactstrap'
+import {Row, Col} from 'reactstrap'
 
 class WorkoutDetails extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sets: {}
+    }
+  }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            details: []
+  componentDidMount() {
+    fetch(`/api/sets/${this.props.match.params.workouthistoryId}`)
+      .then(res => res.json())
+      .then(out => {
+        this.setState({sets: out})
+      })
+      .catch(err => {
+        throw err
+      })
+  }
+
+  render() {
+    let sets = {}
+    if (Array.isArray(this.state.sets)) {
+      for (let i = 0; i < this.state.sets.length; i++) {
+        if (this.state.sets[i].exercise.name in sets) {
+          sets[this.state.sets[i].exercise.name].push(this.state.sets[i])
+        } else {
+          sets[this.state.sets[i].exercise.name] = [this.state.sets[i]]
         }
+      }
     }
 
-    componentDidMount() {
-        fetch('/api/sets')
-            .then(res => res.json())
-            .then(out => {
-                this.setState({ details: out })
-            })
-            .catch(err => {
-                throw err
-            })
-    }
+    return !Array.isArray(this.state.sets) ? (
+      <div>Loading...</div>
+    ) : (
+      <center>
+        <h1>Workout Details</h1>
+        {Object.keys(sets).map(set => {
+          return (
+            <div key={set.id}>
+              <Row>
+                <Col xs="2">{set}</Col>
+              </Row>
 
-    render() {
-        return (
-            <center>
-                <h1>Workout Details</h1>
-                <h2>Shoulders - Jan 16, 2019</h2>
-                <Row>
-                    <Col xs="2">Bnch Press</Col>
-                </Row>
-                <Row>
-                    <Col xs="1">1</Col>
-                    <Col xs="1">150 x 8</Col>
-                </Row>
-            </center >
-        )
-    }
-
+              {sets[set].map((inSet, ind) => {
+                return (
+                  <Row key={inSet.id}>
+                    <Col xs="1">{ind + 1}</Col>
+                    <Col xs="1">
+                      {inSet.weight} X {inSet.reps}
+                    </Col>
+                  </Row>
+                )
+              })}
+            </div>
+          )
+        })}
+      </center>
+    )
+  }
 }
 
 export default WorkoutDetails

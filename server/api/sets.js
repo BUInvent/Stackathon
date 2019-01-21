@@ -16,6 +16,9 @@ router.post('/:routineId/:userId', async (req, res, next) => {
       return k.indexOf('weight') === 0
     })
 
+    let weightIn = 0
+    let repsIn = 0
+
     weightKeys.forEach(async function(key) {
       if (!Array.isArray(req.body[key])) req.body[key] = [req.body[key]]
 
@@ -24,9 +27,15 @@ router.post('/:routineId/:userId', async (req, res, next) => {
       })
 
       for (let i = 0; i < req.body[key].length; i++) {
+        if (typeof req.body[key][i] !== 'number') weightIn = 0
+        else weightIn = req.body[key][i]
+        if (typeof req.body['reps exercise' + key.slice(-1)][i] !== 'number')
+          repsIn = 0
+        else repsIn = req.body['reps exercise' + key.slice(-1)][i]
+
         const set = await Sets.create({
-          weight: req.body[key][i],
-          reps: req.body['reps exercise' + key.slice(-1)][i],
+          weight: weightIn,
+          reps: repsIn,
           workouthistoryId: workoutDate.id
         })
         await set.setExercise(exercise)
@@ -34,6 +43,19 @@ router.post('/:routineId/:userId', async (req, res, next) => {
     })
 
     res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:historyId', async (req, res, next) => {
+  try {
+    const sets = await Sets.findAll({
+      where: {workouthistoryId: req.params.historyId},
+      include: [Exercise]
+    })
+
+    res.json(sets)
   } catch (err) {
     next(err)
   }
