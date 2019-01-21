@@ -1,6 +1,11 @@
 import React from 'react'
-import { Row, Form, FormGroup, Input, Col, Label } from 'reactstrap'
+
+import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button'
+import Input from '@material-ui/core/Input';
+import FormLabel from '@material-ui/core/FormLabel';
+import Grid from '@material-ui/core/Grid';
+
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
@@ -29,7 +34,7 @@ class Workout extends React.Component {
       <center>
         <h1>{this.props.match.params.routineName}</h1>
 
-        <Form
+        <form
           action={`/api/sets/${this.props.match.params.routineId}/${
             this.props.userId
             }`}
@@ -64,40 +69,40 @@ class Workout extends React.Component {
             }
 
             return (
-              <Row form>
-                <Col md={2}>
-                  <Label for="exerciseInputs">{exercise.name}</Label>
+              <FormGroup row>
+                <Grid md={2}>
+                  <FormLabel for="exerciseInputs">{exercise.name}</FormLabel>
                   <FormGroup id="exerciseInputs">
                     {setNum.map(set => {
                       return set
                     })}
                   </FormGroup>
-                </Col>
+                </Grid>
 
-                <Col md={2}>
-                  <Label for="weightInputs">LBS</Label>
+                <Grid md={2}>
+                  <FormLabel for="weightInputs">LBS</FormLabel>
                   <FormGroup id="weightInputs">
                     {weightInput.map(weight => {
                       return weight
                     })}
                   </FormGroup>
-                </Col>
+                </Grid>
 
-                <Col md={2}>
-                  <Label for="repInputs">Reps</Label>
+                <Grid md={2}>
+                  <FormLabel for="repInputs">Reps</FormLabel>
                   <FormGroup id="repInputs">
                     {repsInput.map(reps => {
                       return reps
                     })}
                   </FormGroup>
-                </Col>
-              </Row>
+                </Grid>
+              </FormGroup>
             )
           })}
           <Button color="primary" type="submit">
             Finish
           </Button>
-        </Form>
+        </form>
       </center>
     )
   }
