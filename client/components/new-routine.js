@@ -82,7 +82,6 @@ class NewRoutine extends React.Component {
 
           <FormGroup className="col-sm-6 offset-sm-3">
             <Button
-              className="col-sm-6 offset-sm-3"
               type="submit"
               color="primary"
               disabled={this.state.showExercise}
@@ -145,7 +144,7 @@ class NewRoutine extends React.Component {
               </FormGroup>
             </Form>
 
-            <Form action="/routines">
+            <Form action={`/routines/${this.props.userId}`} className="col-sm-6 offset-sm-3">
               <Button color="primary" type="submit" block>
                 Save and go back to routines
               </Button>
@@ -156,14 +155,12 @@ class NewRoutine extends React.Component {
         <ul>
           {this.state.exercise.map(exercise => {
             return (
-              <Row key={exercise.id}>
-                <Col className="col-sm-4" />
-                <Col>
+              <Row key={exercise.id} style={{paddingTop: 20 }}>
+                <Col sm={{ size: 1, offset: 3}}>
                   <FormGroup>
                     <Button
                       onClick={() => this.removeExercise(exercise)}
-                      color="warning"
-                    >
+                      color="warning">
                       X
                     </Button>
                   </FormGroup>

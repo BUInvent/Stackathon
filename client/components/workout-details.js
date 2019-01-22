@@ -41,15 +41,15 @@ class WorkoutDetails extends React.Component {
         {Object.keys(sets).map(set => {
           return (
             <div key={set.id}>
-              <Row>
-                <Col xs="2">{set}</Col>
+              <Row style={{paddingTop: 50 }}>
+                <Col sm={{ size: 2, offset: 5 }}>{set}</Col>
               </Row>
 
               {sets[set].map((inSet, ind) => {
                 return (
                   <Row key={inSet.id}>
-                    <Col xs="1">{ind + 1}</Col>
-                    <Col xs="1">
+                    <Col sm={{ size: 1, offset: 5 }}>{ind + 1}</Col>
+                    <Col sm={{ size: 1 }}>
                       {inSet.weight} X {inSet.reps}
                     </Col>
                   </Row>

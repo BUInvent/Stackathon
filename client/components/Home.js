@@ -7,7 +7,7 @@ class Home extends React.Component {
     return (
       <center>
         <h1>Welcome to Jurassic Gains!!!</h1>
-        <img src="big2.png" alt="Jacked Dino" width="30%" height="30%" />
+        <img src="https://i.postimg.cc/Gh6qb1pL/big2.png" width="30%" height="30%" />
       </center>
     )
   }
