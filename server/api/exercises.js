@@ -11,6 +11,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:routineId', async (req, res, next) => {
+  try {
+    const exercises = await Exercise.findAll({
+      where: {routineId: req.params.routineId}
+    })
+    res.json(exercises)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const exercise = await Exercise.create({

@@ -13,7 +13,7 @@ class Routines extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/routines/1')
+    fetch(`/api/routines/${this.props.match.params.userId}`)
       .then(res => res.json())
       .then(out => {
         this.setState({routines: out})
@@ -27,14 +27,17 @@ class Routines extends React.Component {
     return (
       <center>
         <h1>Routines</h1>
-        {console.log('user = ', this.props.userId)}
-        {console.log('state = ', this.state)}
 
         {this.state.routines.map(routine => {
           return (
-            <Button key={routine.id} className="col-sm-7">
-              {routine.name}
-            </Button>
+            <form
+              key={routine.id}
+              action={`/workout/${routine.name}/${routine.id}`}
+            >
+              <Button className="col-sm-7" type="submit">
+                {routine.name}
+              </Button>
+            </form>
           )
         })}
 

@@ -1,15 +1,20 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
-import {Button, Form, FormGroup, Input, FormText} from 'reactstrap'
-import {Link} from 'react-router-dom'
+import { auth } from '../store'
+
+import { FormText } from 'reactstrap'
+import Button from '@material-ui/core/Button'
+import FormGroup from '@material-ui/core/FormGroup';
+import Input from '@material-ui/core/Input';
+
+import { Link } from 'react-router-dom'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
 
   return (
     <div>
@@ -23,12 +28,12 @@ const AuthForm = props => {
           {displayName === 'Sign Up' ? (
             <Link to="/login">Login</Link>
           ) : (
-            <Link to="/signup">Sign Up</Link>
-          )}
+              <Link to="/signup">Sign Up</Link>
+            )}
         </center>
       </p>
 
-      <Form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} name={name}>
         <FormGroup className="col-sm-6 offset-sm-3">
           <Input
             type="email"
@@ -56,25 +61,19 @@ const AuthForm = props => {
             {displayName}
           </Button>
         </FormGroup>
-      </Form>
+      </form>
 
-      <center>or</center>
+      <FormGroup className="col-sm-6 offset-sm-3">
+        <center>or</center>
+      </FormGroup>
 
-      <Form action="/auth/google">
+      <form action="/auth/google">
         <FormGroup className="col-sm-6 offset-sm-3">
           <Button type="submit" block>
             {displayName} with Google
           </Button>
         </FormGroup>
-      </Form>
-
-      <Form action="/auth/facebook">
-        <FormGroup className="col-sm-6 offset-sm-3">
-          <Button type="submit" block>
-            {displayName} with Facebook
-          </Button>
-        </FormGroup>
-      </Form>
+      </form>
     </div>
   )
 }
